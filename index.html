@@ -111,6 +111,18 @@ body{
   -webkit-user-select:none;user-select:none;-webkit-touch-callout:none;
 }
 img{max-width:100%}
+/* ── Idle propeller cursor ── */
+body.cursor-idle,body.cursor-idle *{cursor:none !important}
+.prop-cursor{
+  position:fixed;z-index:99999;pointer-events:none;
+  width:48px;height:48px;
+  opacity:0;transition:opacity .3s ease;
+  transform:translate(-24px,-24px);
+  filter:drop-shadow(0 0 3px rgba(0,0,0,.5)) drop-shadow(0 1px 2px rgba(0,0,0,.35));
+}
+.prop-cursor.visible{opacity:1}
+@keyframes propCursorSpin{from{transform:translate(-24px,-24px) rotate(0deg)}to{transform:translate(-24px,-24px) rotate(360deg)}}
+.prop-cursor.visible{animation:propCursorSpin 1.2s linear infinite}
 /* Theme transition */
 body,.problem-bg,.adv-bg,.cont-bg,.road-bg,.platform-bg,.gneft-bg,.app-bg,.show-wrap,
 .adv-card,.mod-card,.app-card,.gneft-table td,.gneft-badge,
@@ -832,6 +844,35 @@ footer span{font-size:.78rem;color:#4a5a68}
 .video-pause-bars{display:none;fill:#fff}
 .video-play-btn.pause-icon .video-pause-bars{display:block}
 .video-play-btn.pause-icon .video-play-tri{display:none}
+/* ── Video loader overlay ── */
+.video-loader{
+  position:absolute;top:0;left:0;right:0;bottom:0;z-index:6;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;
+  background:rgba(0,0,0,.55);backdrop-filter:blur(4px);
+  border-radius:8px;opacity:0;pointer-events:none;
+  transition:opacity .35s ease;
+}
+.video-loader.active{opacity:1;pointer-events:auto}
+/* Propeller spin */
+@keyframes propSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.propeller-spinner .prop-blades{
+  transform-origin:0 0;
+  animation:propSpin 1s linear infinite;
+}
+/* Progress bar */
+.video-load-bar{
+  width:160px;height:4px;border-radius:3px;
+  background:rgba(255,255,255,.15);overflow:hidden;
+}
+.video-load-fill{
+  height:100%;width:0%;border-radius:3px;
+  background:linear-gradient(90deg,var(--orange),#ff9044);
+  transition:width .3s ease;
+}
+.video-load-text{
+  font-size:.72rem;color:rgba(255,255,255,.7);
+  font-weight:600;letter-spacing:.5px;
+}
 .video-reel-dots{display:none}
 .video-reel-dot{
   width:28px;height:3px;border-radius:2px;background:rgba(255,255,255,.35);
@@ -910,6 +951,29 @@ footer span{font-size:.78rem;color:#4a5a68}
         <g class="video-pause-bars"><rect x="28" y="24" width="8" height="32" rx="2"/><rect x="44" y="24" width="8" height="32" rx="2"/></g>
       </svg>
     </button>
+    <!-- Loading overlay -->
+    <div class="video-loader" id="videoLoader">
+      <svg class="propeller-spinner" viewBox="0 0 100 100" width="64" height="64">
+        <defs>
+          <linearGradient id="vbl1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#d4b96a"/><stop offset="100%" stop-color="#a8893a"/></linearGradient>
+          <linearGradient id="vbl2" x1="1" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#dcc678"/><stop offset="100%" stop-color="#9a7e32"/></linearGradient>
+          <linearGradient id="vbl3" x1=".5" y1="1" x2=".5" y2="0"><stop offset="0%" stop-color="#c4a44a"/><stop offset="100%" stop-color="#a88a3a"/></linearGradient>
+        </defs>
+        <g transform="translate(50,50)">
+          <g class="prop-blades">
+            <path d="M-2,-8 C-4,-18 -20,-40 -12,-44 C-2,-46 6,-32 8,-16 C8,-10 4,-6 0,-8Z" fill="url(#vbl1)" stroke="#8a7030" stroke-width=".8"/>
+            <path d="M-2,-8 C-4,-18 -20,-40 -12,-44 C-2,-46 6,-32 8,-16 C8,-10 4,-6 0,-8Z" fill="url(#vbl2)" stroke="#8a7030" stroke-width=".8" transform="rotate(120)"/>
+            <path d="M-2,-8 C-4,-18 -20,-40 -12,-44 C-2,-46 6,-32 8,-16 C8,-10 4,-6 0,-8Z" fill="url(#vbl3)" stroke="#8a7030" stroke-width=".8" transform="rotate(240)"/>
+          </g>
+          <circle cx="0" cy="0" r="9" fill="#b89840" stroke="#8a7030" stroke-width="1"/>
+          <circle cx="0" cy="0" r="4" fill="#6a5520"/>
+        </g>
+      </svg>
+      <div class="video-load-bar">
+        <div class="video-load-fill" id="videoLoadFill"></div>
+      </div>
+      <div class="video-load-text" id="videoLoadText">Загрузка видео...</div>
+    </div>
     <div class="video-reel-dots" id="reelDots"></div>
     <button class="video-reel-mute" id="reelMute" title="Звук">🔇</button>
   </section>
@@ -1620,7 +1684,7 @@ window.addEventListener('scroll', () => {
 /* ── Carousel auto-play ── */
 /* Old carousel removed — all galleries use showcase now */
 
-/* ── Video reel playlist (YouTube-style controls) ── */
+/* ── Video reel playlist (YouTube-style + propeller loader) ── */
 (function(){
   const reel = document.getElementById('videoReel');
   if(!reel) return;
@@ -1628,9 +1692,11 @@ window.addEventListener('scroll', () => {
   const dotsWrap = document.getElementById('reelDots');
   const muteBtn = document.getElementById('reelMute');
   const playBtn = document.getElementById('videoPlayBtn');
+  const loader = document.getElementById('videoLoader');
+  const loadFill = document.getElementById('videoLoadFill');
+  const loadText = document.getElementById('videoLoadText');
   let cur = 0, isMuted = true, isVisible = false;
-  let started = false;      /* first play happened */
-  let hideTimer = null;      /* auto-hide timeout */
+  let started = false, hideTimer = null, progressRAF = null;
 
   /* ── Lazy load ── */
   function ensureLoaded(v) {
@@ -1643,24 +1709,57 @@ window.addEventListener('scroll', () => {
     ensureLoaded(videos[(cur + 1) % videos.length]);
   }
 
+  /* ── Loader (propeller + progress) ── */
+  function showLoader() {
+    loader.classList.add('active');
+    hideBtn();
+    trackProgress();
+  }
+  function hideLoader() {
+    loader.classList.remove('active');
+    cancelProgress();
+  }
+  function trackProgress() {
+    cancelProgress();
+    function update() {
+      const v = videos[cur];
+      if(v.buffered.length > 0 && v.duration) {
+        /* Find buffer range that covers current position */
+        let bufEnd = 0;
+        for(let i = 0; i < v.buffered.length; i++) {
+          if(v.buffered.start(i) <= v.currentTime) {
+            bufEnd = Math.max(bufEnd, v.buffered.end(i));
+          }
+        }
+        const pct = Math.min(100, Math.round((bufEnd / v.duration) * 100));
+        loadFill.style.width = pct + '%';
+        loadText.textContent = 'Загрузка видео ' + pct + '%';
+        if(pct >= 100) {
+          loadText.textContent = 'Буферизация завершена';
+        }
+      }
+      progressRAF = requestAnimationFrame(update);
+    }
+    progressRAF = requestAnimationFrame(update);
+  }
+  function cancelProgress() {
+    if(progressRAF) { cancelAnimationFrame(progressRAF); progressRAF = null; }
+  }
+
   /* ── Play button visibility ── */
   function showBtn(asPause) {
     playBtn.classList.remove('hidden');
     if(asPause) playBtn.classList.add('pause-icon');
     else playBtn.classList.remove('pause-icon');
   }
-  function hideBtn() {
-    playBtn.classList.add('hidden');
-  }
+  function hideBtn() { playBtn.classList.add('hidden'); }
   function scheduleHide(ms) {
     clearTimeout(hideTimer);
     hideTimer = setTimeout(hideBtn, ms || 2500);
   }
-  function cancelHide() {
-    clearTimeout(hideTimer);
-  }
+  function cancelHide() { clearTimeout(hideTimer); }
 
-  /* ── Dots (hidden but still functional) ── */
+  /* ── Dots ── */
   videos.forEach((v, i) => {
     const dot = document.createElement('div');
     dot.className = 'video-reel-dot' + (i === 0 ? ' active' : '');
@@ -1673,6 +1772,22 @@ window.addEventListener('scroll', () => {
   videos.forEach((v, i) => {
     v.addEventListener('loadedmetadata', () => {
       dots[i].style.setProperty('--dur', v.duration + 's');
+    });
+  });
+
+  /* ── Buffering events per video ── */
+  videos.forEach(v => {
+    /* waiting = stalled, needs buffer */
+    v.addEventListener('waiting', () => {
+      if(v.classList.contains('active') && started) showLoader();
+    });
+    /* playing = has enough data, playing now */
+    v.addEventListener('playing', () => {
+      if(v.classList.contains('active')) hideLoader();
+    });
+    /* canplaythrough = fully buffered enough for smooth play */
+    v.addEventListener('canplaythrough', () => {
+      if(v.classList.contains('active')) hideLoader();
     });
   });
 
@@ -1696,7 +1811,7 @@ window.addEventListener('scroll', () => {
     preloadNext();
   }
 
-  /* Auto-advance on end */
+  /* Auto-advance */
   videos.forEach((v, i) => {
     v.addEventListener('ended', () => goTo((i + 1) % videos.length));
   });
@@ -1708,51 +1823,45 @@ window.addEventListener('scroll', () => {
     const v = videos[cur];
 
     if(!started) {
-      /* First ever click — load & play */
       started = true;
       ensureLoaded(v);
       v.muted = isMuted;
-      v.play();
-      hideBtn();
+      showLoader(); /* show propeller immediately */
+      loadFill.style.width = '0%';
+      loadText.textContent = 'Загрузка видео...';
+      v.play().catch(() => {}); /* play triggers loading */
       preloadNext();
     } else if(v.paused) {
-      /* Resume */
       v.play();
       hideBtn();
     } else {
-      /* Pause */
       v.pause();
-      showBtn(false); /* show play icon, stay visible */
+      showBtn(false);
     }
   });
 
   /* ── Tap / click on video area ── */
   reel.addEventListener('click', (e) => {
-    /* Ignore clicks on button itself or mute */
     if(playBtn.contains(e.target) || muteBtn.contains(e.target)) return;
-
-    if(!started) return; /* before first play, do nothing (button handles it) */
+    if(loader.classList.contains('active')) return; /* ignore during loading */
+    if(!started) return;
 
     const v = videos[cur];
     if(v.paused) {
-      /* Video paused → play & hide button */
       v.play();
       hideBtn();
     } else {
-      /* Video playing → show pause icon briefly */
       showBtn(true);
       scheduleHide(2500);
     }
   });
 
-  /* ── Mouse move on reel → briefly show button ── */
+  /* ── Mouse hover → show pause btn ── */
   reel.addEventListener('mousemove', () => {
-    if(!started || videos[cur].paused) return;
+    if(!started || videos[cur].paused || loader.classList.contains('active')) return;
     showBtn(true);
     scheduleHide(2500);
   });
-
-  /* ── Mouse leaves reel → hide immediately ── */
   reel.addEventListener('mouseleave', () => {
     if(!started || videos[cur].paused) return;
     scheduleHide(800);
@@ -1766,7 +1875,7 @@ window.addEventListener('scroll', () => {
     muteBtn.textContent = isMuted ? '🔇' : '🔊';
   });
 
-  /* ── Visibility observer — pause off-screen, DON'T auto-start ── */
+  /* ── Visibility observer ── */
   let wasPlaying = false;
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
@@ -1802,6 +1911,52 @@ document.addEventListener('keydown', e => {
     e.preventDefault();
   }
 });
+
+/* ── Idle propeller cursor (10s no movement) ── */
+(function(){
+  const el = document.createElement('div');
+  el.className = 'prop-cursor';
+  el.innerHTML = '<svg viewBox="0 0 48 48" width="48" height="48"><defs><linearGradient id="bl1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#d4b96a"/><stop offset="50%" stop-color="#c9a84e"/><stop offset="100%" stop-color="#a8893a"/></linearGradient><linearGradient id="bl2" x1="1" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#dcc678"/><stop offset="50%" stop-color="#bfa048"/><stop offset="100%" stop-color="#9a7e32"/></linearGradient><linearGradient id="bl3" x1=".5" y1="1" x2=".5" y2="0"><stop offset="0%" stop-color="#c4a44a"/><stop offset="50%" stop-color="#d4bc6a"/><stop offset="100%" stop-color="#a88a3a"/></linearGradient></defs><g transform="translate(24,24)"><path d="M-1,-4 C-2,-10 -10,-20 -6,-22 C-1,-23 3,-16 4,-8 C4,-5 2,-3 0,-4Z" fill="url(#bl1)" stroke="#8a7030" stroke-width=".5" transform="rotate(0)"/><path d="M-1,-4 C-2,-10 -10,-20 -6,-22 C-1,-23 3,-16 4,-8 C4,-5 2,-3 0,-4Z" fill="url(#bl2)" stroke="#8a7030" stroke-width=".5" transform="rotate(120)"/><path d="M-1,-4 C-2,-10 -10,-20 -6,-22 C-1,-23 3,-16 4,-8 C4,-5 2,-3 0,-4Z" fill="url(#bl3)" stroke="#8a7030" stroke-width=".5" transform="rotate(240)"/><circle cx="0" cy="0" r="4.5" fill="#b89840" stroke="#8a7030" stroke-width=".6"/><circle cx="0" cy="0" r="1.8" fill="#6a5520"/></g></svg>';
+  document.body.appendChild(el);
+
+  let mx = 0, my = 0, idle = false, timer = null;
+  const IDLE_MS = 10000;
+
+  function goIdle() {
+    idle = true;
+    document.body.classList.add('cursor-idle');
+    el.style.left = mx + 'px';
+    el.style.top = my + 'px';
+    el.classList.add('visible');
+  }
+
+  function wakeUp() {
+    if(!idle) return;
+    idle = false;
+    document.body.classList.remove('cursor-idle');
+    el.classList.remove('visible');
+  }
+
+  function resetTimer() {
+    clearTimeout(timer);
+    timer = setTimeout(goIdle, IDLE_MS);
+  }
+
+  document.addEventListener('mousemove', (e) => {
+    mx = e.clientX; my = e.clientY;
+    if(idle) {
+      wakeUp();
+    }
+    resetTimer();
+  });
+
+  document.addEventListener('mousedown', () => { if(idle) wakeUp(); resetTimer(); });
+  document.addEventListener('keydown', () => { if(idle) wakeUp(); resetTimer(); });
+  document.addEventListener('scroll', () => { if(idle) wakeUp(); resetTimer(); }, {passive:true});
+  document.addEventListener('touchstart', () => { if(idle) wakeUp(); resetTimer(); }, {passive:true});
+
+  resetTimer();
+})();
 </script>
 
 </body>
