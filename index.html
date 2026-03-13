@@ -20,16 +20,114 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --orange:#E05206;--navy:#1B2A38;--accent:#1B6FA8;
+  --ff:'Inter',system-ui,sans-serif;
+  /* Light theme (default) */
   --dark:#1A1A1A;--grey:#5A6370;--light:#F2F8FC;
   --white:#FFFFFF;--border:#DDE3EA;
-  --ff:'Inter',system-ui,sans-serif;
+  --bg:#ffffff;--card:#ffffff;--card2:#f8fbfd;
+  --txt:#1A1A1A;--txt2:#5A6370;--txt-inv:#fff;
+  --shadow:.09;--tbl-hover:rgba(27,42,56,.04);
+  --card-sh:0 2px 8px rgba(27,42,56,.08), 0 8px 24px rgba(27,42,56,.06);
+  --card-sh-hover:0 8px 32px rgba(27,111,168,.14), 0 2px 8px rgba(0,0,0,.06);
+  --card-grad:linear-gradient(180deg, rgba(255,255,255,.7) 0%, rgba(242,248,252,.3) 100%);
+  --badge-y-bg:#FFF3CC;--badge-y-c:#7a5500;--badge-y-b:#E5AE00;
+  --badge-bl-bg:#DCEEFF;--badge-bl-c:#1B6FA8;--badge-bl-b:#1B6FA8;
+  --badge-sl-bg:#eef1f3;--badge-sl-c:#3a5060;--badge-sl-b:#9aacb8;
+  --badge-or-bg:#FDEEE6;--badge-or-c:#c04400;--badge-or-b:#E05206;
+  --badge-tl-bg:#D4F0F0;--badge-tl-c:#0d6060;--badge-tl-b:#148080;
+  --grad-prob:
+    radial-gradient(circle at 20% 80%, rgba(27,111,168,.07), transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(224,82,6,.05), transparent 35%),
+    linear-gradient(180deg,#f4f8fc,#fff);
+  --grad-adv:
+    radial-gradient(circle at 70% 90%, rgba(36,196,196,.08), transparent 38%),
+    radial-gradient(circle at 10% 30%, rgba(224,82,6,.06), transparent 32%),
+    linear-gradient(180deg,#f2f8fc,#fff);
+  --grad-cont:
+    radial-gradient(circle at 90% 50%, rgba(27,111,168,.08), transparent 36%),
+    radial-gradient(circle at 10% 80%, rgba(36,196,196,.06), transparent 30%),
+    linear-gradient(135deg,#fff,#f2f8fc);
+  --grad-road:
+    radial-gradient(circle at 30% 20%, rgba(224,82,6,.06), transparent 35%),
+    radial-gradient(circle at 80% 70%, rgba(27,111,168,.07), transparent 38%),
+    linear-gradient(180deg,#f2f8fc,#fff);
+  --grad-plat:
+    radial-gradient(circle at 60% 80%, rgba(36,196,196,.07), transparent 36%),
+    radial-gradient(circle at 20% 20%, rgba(27,111,168,.06), transparent 32%),
+    linear-gradient(180deg,#f0f5f9,#fff);
+  --grad-gneft:
+    radial-gradient(circle at 80% 30%, rgba(224,82,6,.06), transparent 34%),
+    radial-gradient(circle at 20% 70%, rgba(36,196,196,.07), transparent 36%),
+    linear-gradient(180deg,#f2f8fc,#fff);
+  --video-glow-o:.25;--video-glow-bl:.2;--video-glow-far:.12;
+}
+[data-theme="dark"]{
+  --dark:#e0e6ec;--grey:#8a9aaa;--light:#111820;
+  --white:#FFFFFF;--border:#2a3a4a;
+  --bg:#0d1319;--card:#151e28;--card2:#1a2535;
+  --txt:#e0e6ec;--txt2:#8a9aaa;--txt-inv:#fff;
+  --shadow:.3;--tbl-hover:rgba(255,255,255,.04);
+  --card-sh:0 2px 10px rgba(0,0,0,.3), 0 8px 28px rgba(0,0,0,.2);
+  --card-sh-hover:0 8px 36px rgba(224,82,6,.15), 0 2px 10px rgba(0,0,0,.3);
+  --card-grad:linear-gradient(180deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,.02) 100%);
+  --badge-y-bg:rgba(229,174,0,.15);--badge-y-c:#e5b800;--badge-y-b:rgba(229,174,0,.4);
+  --badge-bl-bg:rgba(27,111,168,.15);--badge-bl-c:#4da3e0;--badge-bl-b:rgba(27,111,168,.4);
+  --badge-sl-bg:rgba(154,172,184,.12);--badge-sl-c:#8aa0b0;--badge-sl-b:rgba(154,172,184,.3);
+  --badge-or-bg:rgba(224,82,6,.15);--badge-or-c:#f08040;--badge-or-b:rgba(224,82,6,.4);
+  --badge-tl-bg:rgba(20,128,128,.15);--badge-tl-c:#30b0b0;--badge-tl-b:rgba(20,128,128,.4);
+  --grad-prob:
+    radial-gradient(circle at 20% 80%, rgba(27,111,168,.18), transparent 40%),
+    radial-gradient(circle at 85% 20%, rgba(224,82,6,.14), transparent 35%),
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,.02), transparent 50%),
+    linear-gradient(180deg,#111820,#0d1319);
+  --grad-adv:
+    radial-gradient(circle at 70% 90%, rgba(36,196,196,.18), transparent 38%),
+    radial-gradient(circle at 10% 30%, rgba(224,82,6,.14), transparent 32%),
+    radial-gradient(circle at 40% 60%, rgba(255,255,255,.02), transparent 45%),
+    linear-gradient(180deg,#0f1a24,#0d1319);
+  --grad-cont:
+    radial-gradient(circle at 90% 50%, rgba(27,111,168,.2), transparent 36%),
+    radial-gradient(circle at 10% 80%, rgba(36,196,196,.14), transparent 30%),
+    linear-gradient(135deg,#0d1319,#111820);
+  --grad-road:
+    radial-gradient(circle at 30% 20%, rgba(224,82,6,.16), transparent 35%),
+    radial-gradient(circle at 80% 70%, rgba(27,111,168,.18), transparent 38%),
+    linear-gradient(180deg,#111820,#0d1319);
+  --grad-plat:
+    radial-gradient(circle at 60% 80%, rgba(36,196,196,.16), transparent 36%),
+    radial-gradient(circle at 20% 20%, rgba(27,111,168,.14), transparent 32%),
+    linear-gradient(180deg,#111820,#0d1319);
+  --grad-gneft:
+    radial-gradient(circle at 80% 30%, rgba(224,82,6,.15), transparent 34%),
+    radial-gradient(circle at 20% 70%, rgba(36,196,196,.16), transparent 36%),
+    radial-gradient(circle at 50% 50%, rgba(27,111,168,.08), transparent 40%),
+    linear-gradient(180deg,#0f1a24,#0d1319);
+  --video-glow-o:.35;--video-glow-bl:.25;--video-glow-far:.18;
 }
 html{scroll-behavior:smooth}
 body{
-  font-family:var(--ff);color:var(--dark);background:#fff;line-height:1.6;overflow-x:hidden;
+  font-family:var(--ff);color:var(--dark);background:var(--bg);line-height:1.6;overflow-x:hidden;
+  color-scheme:light dark;
   -webkit-user-select:none;user-select:none;-webkit-touch-callout:none;
 }
 img{max-width:100%}
+/* Theme transition */
+body,.problem-bg,.adv-bg,.cont-bg,.road-bg,.platform-bg,.gneft-bg,.app-bg,.show-wrap,
+.adv-card,.mod-card,.app-card,.gneft-table td,.gneft-badge,
+h2,h3,p,span,a,.s-label,.section,.video-reel{
+  transition:background-color .4s ease, color .4s ease, border-color .4s ease, box-shadow .4s ease;
+}
+video,img,canvas,.hero,.hero-bg,.hero-overlay{transition:none !important}
+/* Theme toggle */
+.theme-toggle{
+  background:none;border:none;cursor:pointer;padding:6px;margin-left:12px;
+  display:flex;align-items:center;font-size:1.2rem;position:relative;
+}
+.theme-ico{transition:opacity .3s,transform .3s}
+.dark-ico{position:absolute;opacity:0;transform:rotate(-90deg)}
+[data-theme="dark"] .light-ico{opacity:0;transform:rotate(90deg)}
+[data-theme="dark"] .dark-ico{opacity:1;transform:rotate(0deg);position:static}
+[data-theme="dark"] .light-ico{position:absolute}
 
 nav{
   position:fixed;top:0;left:0;right:0;z-index:1000;
@@ -92,15 +190,15 @@ section{padding:96px 8%}
 .s-body{font-size:1.05rem;color:var(--grey);max-width:660px;line-height:1.72;margin-bottom:48px}
 .divider{height:4px;width:52px;background:var(--orange);border-radius:2px;margin-bottom:48px}
 
-.problem-bg{background:linear-gradient(180deg,#f6f9fb,#fff)}
+.problem-bg{background:var(--grad-prob)}
 .p2-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start}
 .pp-list{display:flex;flex-direction:column;gap:18px}
 .pp-item{
   display:flex;gap:16px;align-items:flex-start;
-  background:#fff;border:1px solid var(--border);border-left:4px solid var(--orange);
-  padding:18px 20px;border-radius:7px;box-shadow:0 2px 10px rgba(0,0,0,.05);transition:.2s;
+  background:var(--card-grad),var(--card);border:1px solid var(--border);border-left:4px solid var(--orange);
+  padding:18px 20px;border-radius:7px;box-shadow:var(--card-sh);transition:.2s;
 }
-.pp-item:hover{box-shadow:0 6px 20px rgba(27,111,168,.13);transform:translateX(5px)}
+.pp-item:hover{box-shadow:var(--card-sh-hover);transform:translateX(5px)}
 .pp-icon{font-size:1.5rem;flex-shrink:0;line-height:1.2}
 .pp-body h4{font-weight:700;color:var(--dark);font-size:.92rem;margin-bottom:3px}
 .pp-body p{color:var(--grey);font-size:.86rem;line-height:1.55}
@@ -121,17 +219,66 @@ section{padding:96px 8%}
 .sol-li:last-child{border:none}
 .sol-li::before{content:'✓';color:var(--orange);font-weight:800;flex-shrink:0}
 
-.show-wrap{background:#fff}
-.tab-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:28px}
-.tab{
-  padding:9px 20px;border-radius:5px;cursor:pointer;
-  border:1.5px solid var(--border);font-size:.82rem;font-weight:600;
-  color:var(--grey);background:#fff;transition:.2s;
+.show-wrap{background:var(--bg);position:relative}
+
+/* ── Showcase gallery ── */
+.showcase{max-width:960px;margin:0 auto}
+.showcase-main{
+  position:relative;width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;
+  box-shadow:0 12px 40px rgba(0,0,0,.18);margin-bottom:16px;background:#0d1820;
 }
-.tab.on{background:var(--navy);color:#fff;border-color:var(--navy)}
-.tab:hover:not(.on){border-color:var(--accent);color:var(--accent)}
-.panels>div{display:none}
-.panels>div.on{display:block}
+.cont-img .showcase{max-width:100%}
+.cont-img .showcase-main{margin-bottom:8px}
+.cont-img .showcase-thumbs{gap:5px}
+.cont-img .showcase-thumb{width:90px;height:58px;border-radius:6px}
+.showcase-main img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:0;transition:opacity .5s ease;
+}
+.showcase-main img.active{opacity:1}
+.showcase-caption{
+  position:absolute;bottom:0;left:0;right:0;z-index:2;
+  padding:8px 16px;
+  background:linear-gradient(transparent,rgba(0,0,0,.6));
+  font-size:.78rem;font-weight:600;color:#fff;letter-spacing:.3px;
+}
+.showcase-arrow{
+  position:absolute;top:50%;transform:translateY(-50%);z-index:3;
+  width:44px;height:44px;border-radius:50%;border:none;
+  background:rgba(13,24,32,.55);color:#fff;font-size:1.3rem;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  backdrop-filter:blur(4px);transition:.25s;opacity:.7;
+}
+.showcase-arrow:hover{opacity:1;background:rgba(224,82,6,.75)}
+.showcase-arrow.left{left:12px}
+.showcase-arrow.right{right:12px}
+.showcase-pause{
+  position:absolute;top:12px;right:12px;z-index:3;
+  width:36px;height:36px;border-radius:50%;border:none;
+  background:rgba(13,24,32,.55);color:#fff;font-size:.9rem;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  backdrop-filter:blur(4px);transition:.25s;opacity:.6;
+}
+.showcase-pause:hover{opacity:1;background:rgba(224,82,6,.75)}
+.showcase-pause.paused{background:rgba(224,82,6,.7);opacity:1}
+.showcase-thumbs{
+  display:flex;gap:8px;overflow-x:auto;padding:4px 0 8px;
+  scrollbar-width:thin;scrollbar-color:var(--orange) transparent;
+}
+.showcase-thumbs::-webkit-scrollbar{height:4px}
+.showcase-thumbs::-webkit-scrollbar-thumb{background:var(--orange);border-radius:2px}
+.showcase-thumb{
+  flex:0 0 auto;width:110px;height:72px;border-radius:8px;overflow:hidden;
+  cursor:pointer;border:2.5px solid transparent;transition:.25s;opacity:.55;
+  box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+.showcase-thumb.active{border-color:var(--orange);opacity:1;box-shadow:0 4px 16px rgba(224,82,6,.3)}
+.showcase-thumb:hover:not(.active){opacity:.85;border-color:rgba(27,111,168,.4)}
+.showcase-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* legacy compat */
+.tab-bar{display:none}
+.panels{display:none}
 .show-img{
   width:100%;max-height:640px;object-fit:cover;
   border-radius:12px;box-shadow:0 20px 56px rgba(0,0,0,.2);display:block;
@@ -154,9 +301,37 @@ section{padding:96px 8%}
 }
 .show-2col img.contain-img{object-fit:contain;background:#eef3f7;padding:10px}
 
+/* ── Carousel ── */
+.carousel{position:relative;border-radius:10px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.3)}
+.carousel-track{position:relative;width:100%;height:260px}
+.carousel-slide{position:absolute;inset:0;opacity:0;transition:opacity .6s ease}
+.carousel-slide.active{opacity:1}
+.carousel-slide img{width:100%;height:260px;object-fit:cover;display:block;border-radius:0}
+.carousel-dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:7px;z-index:2}
+.carousel-dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.45);border:1.5px solid rgba(255,255,255,.7);cursor:pointer;transition:.25s}
+.carousel-dot.active{background:var(--orange);border-color:var(--orange);transform:scale(1.2)}
+.carousel-wide{max-width:900px;margin:0 auto}
+.carousel-wide .carousel-track{height:420px}
+.carousel-wide .carousel-slide img{height:420px}
+@media(max-width:680px){.carousel-wide .carousel-track,.carousel-wide .carousel-slide img{height:260px}}
+
+/* ── Unified gallery grid ── */
+.gallery-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;
+  max-width:960px;margin:0 auto;
+}
+.gallery-grid figure{margin:0;overflow:hidden;border-radius:10px;box-shadow:0 6px 22px rgba(0,0,0,.12)}
+.gallery-grid img{
+  width:100%;height:280px;object-fit:cover;display:block;
+  transition:transform .35s ease;
+}
+.gallery-grid figure:hover img{transform:scale(1.03)}
+/* single centered image */
+.gallery-grid figure:only-child{grid-column:1/-1;max-width:520px;margin:0 auto}
+
 .numbers{
   background:var(--orange);padding:0 8%;
-  display:grid;grid-template-columns:repeat(6,1fr);gap:0;
+  display:grid;grid-template-columns:repeat(7,1fr);gap:0;
 }
 .num{text-align:center;padding:40px 10px;border-right:1px solid rgba(255,255,255,.25)}
 .num:last-child{border:none}
@@ -164,19 +339,20 @@ section{padding:96px 8%}
 .nu{font-size:.95rem;font-weight:700;color:rgba(255,255,255,.7)}
 .nl{font-size:.72rem;color:rgba(255,255,255,.8);margin-top:5px;letter-spacing:.5px;text-transform:uppercase}
 
-.adv-bg{background:linear-gradient(180deg,var(--light),#fff)}
+.adv-bg{background:var(--grad-adv)}
 .adv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(285px,1fr));gap:22px}
 .adv-card{
-  background:#fff;border:1px solid var(--border);
+  background:var(--card-grad),var(--card);border:1px solid var(--border);
   border-top:4px solid var(--accent);border-radius:8px;
   padding:28px 24px;transition:.25s;position:relative;overflow:hidden;
+  box-shadow:var(--card-sh);
 }
 .adv-card::after{
   content:'';position:absolute;bottom:0;left:0;right:0;height:3px;
   background:linear-gradient(90deg,var(--orange),var(--accent));
   transform:scaleX(0);transform-origin:left;transition:.3s;
 }
-.adv-card:hover{box-shadow:0 10px 32px rgba(27,111,168,.16);transform:translateY(-5px)}
+.adv-card:hover{box-shadow:var(--card-sh-hover);transform:translateY(-5px)}
 .adv-card:hover::after{transform:scaleX(1)}
 .adv-card.hl{background:var(--navy);border-color:var(--orange);border-top-color:var(--orange)}
 .adv-card.hl h3{color:#fff}
@@ -196,16 +372,17 @@ section{padding:96px 8%}
 .sv strong{color:var(--orange);font-weight:700}
 .badge-ice{background:rgba(27,111,168,.3);color:#88BBDD;border:1px solid rgba(27,111,168,.5);border-radius:3px;padding:1px 8px;font-size:.75rem;font-weight:700}
 
-.cont-bg{background:linear-gradient(135deg,#fff,var(--light))}
+.cont-bg{background:var(--grad-cont)}
 .assembly{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin:48px 0}
 .ap{
-  background:#fff;border:2px solid var(--border);border-radius:10px;
+  background:var(--card-grad),var(--card);border:2px solid var(--border);border-radius:10px;
   padding:26px 20px;text-align:center;transition:.22s;position:relative;
+  box-shadow:var(--card-sh);
 }
-.ap:hover{border-color:var(--accent);box-shadow:0 8px 24px rgba(27,111,168,.12)}
+.ap:hover{border-color:var(--accent);box-shadow:var(--card-sh-hover)}
 .ap:not(:last-child)::after{
   content:'+';position:absolute;right:-15px;top:50%;transform:translateY(-50%);
-  font-size:.9rem;font-weight:900;color:var(--orange);background:#fff;
+  font-size:.9rem;font-weight:900;color:var(--orange);background:var(--card);
   width:28px;height:28px;border:2px solid var(--orange);border-radius:50%;
   display:flex;align-items:center;justify-content:center;z-index:1;
 }
@@ -232,11 +409,12 @@ section{padding:96px 8%}
   object-fit:cover;height:260px;
 }
 
-.app-bg{background:#fff}
+.app-bg{background:var(--grad-cont)}
 .app-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
 .app-card{
-  background:var(--light);border:1px solid var(--border);border-radius:10px;
+  background:var(--card-grad),var(--card);border:1px solid var(--border);border-radius:10px;
   padding:28px 22px;transition:.2s;cursor:default;
+  box-shadow:var(--card-sh);
 }
 .app-card:hover{background:var(--navy);border-color:var(--navy)}
 .app-card:hover h3,.app-card:hover .a-ico{color:#fff}
@@ -247,8 +425,8 @@ section{padding:96px 8%}
 
 .transport-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
 .transport-grid figure{
-  margin:0;background:#fff;border:1px solid var(--border);border-radius:12px;
-  overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.08);
+  margin:0;background:var(--card-grad),var(--card);border:1px solid var(--border);border-radius:12px;
+  overflow:hidden;box-shadow:var(--card-sh);
 }
 .transport-grid img{width:100%;height:320px;object-fit:cover;display:block}
 
@@ -318,7 +496,7 @@ section{padding:96px 8%}
 }
 .why-hl.o{background:rgba(224,82,6,.18);color:#ffc2a1}
 
-.road-bg{background:linear-gradient(180deg,var(--light),#fff)}
+.road-bg{background:var(--grad-road)}
 .timeline{position:relative;display:flex;flex-direction:column;gap:0;padding-left:0}
 .timeline::before{
   content:'';position:absolute;left:27px;top:10px;bottom:28px;width:2px;
@@ -332,8 +510,8 @@ section{padding:96px 8%}
   font-size:1.1rem;font-weight:900;color:var(--orange);
 }
 .tl-body{
-  background:#fff;border:1px solid var(--border);border-radius:9px;
-  padding:20px 24px;flex:1;box-shadow:0 2px 8px rgba(0,0,0,.04);
+  background:var(--card-grad),var(--card);border:1px solid var(--border);border-radius:9px;
+  padding:20px 24px;flex:1;box-shadow:var(--card-sh);
 }
 .tl-body h4{font-weight:700;color:var(--dark);margin-bottom:5px}
 .tl-dur{
@@ -389,7 +567,7 @@ footer span{font-size:.78rem;color:#4a5a68}
 .f-logo{font-size:1.15rem;font-weight:900;color:var(--orange);letter-spacing:.5px}
 
 /* ── Universal Platform ── */
-.platform-bg{background:linear-gradient(180deg,#f0f5f9,#fff)}
+.platform-bg{background:var(--grad-plat)}
 .platform-intro{display:grid;grid-template-columns:1.2fr 1fr;gap:52px;align-items:start;margin-bottom:64px}
 .plat-features{display:flex;flex-direction:column;gap:13px;margin-top:22px}
 .plat-feat{display:flex;align-items:flex-start;gap:11px;color:var(--grey);font-size:.875rem;line-height:1.55}
@@ -406,7 +584,7 @@ footer span{font-size:.78rem;color:#4a5a68}
 
 /* ── Module cards ── */
 .mod-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-top:24px}
-.mod-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:0;transition:.25s;position:relative;overflow:hidden}
+.mod-card{background:var(--card-grad),var(--card);border:1px solid var(--border);border-radius:10px;padding:0;transition:.25s;position:relative;overflow:hidden;box-shadow:var(--card-sh)}
 .mod-card::before{content:'';position:absolute;top:0;left:0;right:0;height:5px}
 .mod-card-img{overflow:hidden;position:relative;background:#eef3f7}
 .mod-card-img img{width:100%;height:auto;display:block;transition:transform .4s ease}
@@ -472,21 +650,21 @@ footer span{font-size:.78rem;color:#4a5a68}
 .conn-text strong{color:var(--orange);font-weight:700}
 
 /* ── Gazprom Neft tasks table ── */
-.gneft-bg{background:linear-gradient(180deg,var(--light),#fff)}
-.gneft-table-wrap{overflow-x:auto;border-radius:10px;box-shadow:0 4px 24px rgba(0,0,0,.09)}
+.gneft-bg{background:var(--grad-gneft)}
+.gneft-table-wrap{overflow-x:auto;border-radius:10px;box-shadow:var(--card-sh);border:1px solid var(--border)}
 .gneft-table{width:100%;border-collapse:collapse;min-width:640px}
 .gneft-table thead th{background:var(--navy);color:#ccd6e0;font-size:.76rem;font-weight:700;padding:13px 14px;text-align:left;letter-spacing:.25px;white-space:nowrap}
 .gneft-table thead th:first-child{color:#88BBDD;width:35%}
-.gneft-table td{padding:11px 14px;font-size:.81rem;border-bottom:1px solid var(--border);vertical-align:middle}
+.gneft-table td{padding:11px 14px;font-size:.81rem;border-bottom:1px solid var(--border);vertical-align:middle;color:var(--txt2)}
 .gneft-table tbody tr:last-child td{border:none}
-.gneft-table tbody tr:hover td{background:rgba(27,42,56,.04)}
+.gneft-table tbody tr:hover td{background:var(--tbl-hover)}
 .gneft-table td:first-child{font-weight:600;color:var(--dark);font-size:.84rem}
 .gneft-badge{display:inline-block;font-size:.68rem;font-weight:700;padding:2px 8px;border-radius:3px;margin:2px 2px 2px 0;white-space:nowrap}
-.gneft-badge.yellow{background:#FFF3CC;color:#7a5500;border:1px solid #E5AE00}
-.gneft-badge.blue{background:#DCEEFF;color:#1B6FA8;border:1px solid #1B6FA8}
-.gneft-badge.slate{background:#eef1f3;color:#3a5060;border:1px solid #9aacb8}
-.gneft-badge.orange{background:#FDEEE6;color:#c04400;border:1px solid #E05206}
-.gneft-badge.teal{background:#D4F0F0;color:#0d6060;border:1px solid #148080}
+.gneft-badge.yellow{background:var(--badge-y-bg);color:var(--badge-y-c);border:1px solid var(--badge-y-b)}
+.gneft-badge.blue{background:var(--badge-bl-bg);color:var(--badge-bl-c);border:1px solid var(--badge-bl-b)}
+.gneft-badge.slate{background:var(--badge-sl-bg);color:var(--badge-sl-c);border:1px solid var(--badge-sl-b)}
+.gneft-badge.orange{background:var(--badge-or-bg);color:var(--badge-or-c);border:1px solid var(--badge-or-b)}
+.gneft-badge.teal{background:var(--badge-tl-bg);color:var(--badge-tl-c);border:1px solid var(--badge-tl-b)}
 
 @media(max-width:960px){
   .platform-intro{grid-template-columns:1fr}
@@ -511,6 +689,9 @@ footer span{font-size:.78rem;color:#4a5a68}
   .assembly{grid-template-columns:1fr}
   .ap:not(:last-child)::after{display:none}
   .show-2col{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:1fr}
+  .gallery-grid img{height:240px}
+  .gallery-grid figure:only-child{max-width:100%}
   nav{position:static;padding:0 5%;height:60px}
   .nav-toggle{display:block}
   .nav-links{
@@ -570,6 +751,7 @@ footer span{font-size:.78rem;color:#4a5a68}
   .sol-box > p{font-size:.86rem}
   .sol-li{font-size:.82rem}
   .show-2col img,.transport-grid img{height:210px}
+  .gallery-grid img{height:200px}
   .transport-grid figure,.app-card,.adv-card,.pp-item,.ap,.tl-body{border-radius:10px}
   .timeline::before{left:18px}
   .tl-item{gap:14px}
@@ -595,6 +777,7 @@ footer span{font-size:.78rem;color:#4a5a68}
   .nl{font-size:.62rem}
   .show-img{max-height:300px}
   .show-2col img,.transport-grid img{height:180px}
+  .gallery-grid img{height:170px}
   .s-label{font-size:.64rem;letter-spacing:2px}
   .s-title{font-size:1.75rem}
   .s-body{font-size:.9rem;line-height:1.62;margin-bottom:28px}
@@ -609,6 +792,36 @@ footer span{font-size:.78rem;color:#4a5a68}
 .btn-docx:hover{background:#155d8e;border-color:#155d8e;transform:translateY(-1px)}
 .btn-pres{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 26px;background:#1e9c96;color:#fff;border:2px solid #1e9c96;border-radius:7px;font-size:.84rem;font-weight:700;letter-spacing:.3px;cursor:pointer;transition:.2s;text-decoration:none;font-family:inherit;text-align:center}
 .btn-pres:hover{background:#177f7a;border-color:#177f7a;transform:translateY(-1px)}
+/* ── Video reel ── */
+.video-reel-wrap{
+  position:relative;max-width:900px;margin:40px auto 50px;padding:0 20px;
+}
+.video-reel{
+  position:relative;width:100%;overflow:hidden;background:#000;
+  border-radius:10px;z-index:1;padding:3px;
+  box-shadow:
+    0 0 30px rgba(224,82,6,var(--video-glow-o)),
+    0 0 60px rgba(27,111,168,var(--video-glow-bl)),
+    0 0 100px rgba(224,82,6,var(--video-glow-far)),
+    0 8px 40px rgba(0,0,0,.35);
+}
+.video-reel video{width:100%;display:block;opacity:0;position:absolute;top:0;left:0;transition:opacity .8s ease;
+  object-fit:cover;aspect-ratio:16/9;border-radius:8px;
+}
+.video-reel video.active{opacity:1;position:relative}
+.video-reel-dots{display:none}
+.video-reel-dot{
+  width:28px;height:3px;border-radius:2px;background:rgba(255,255,255,.35);
+  cursor:pointer;transition:.3s;position:relative;overflow:hidden;
+}
+.video-reel-dot.active{background:rgba(255,255,255,.25)}
+.video-reel-dot .fill{
+  position:absolute;top:0;left:0;height:100%;width:0;
+  background:var(--orange);border-radius:2px;
+}
+.video-reel-dot.active .fill{animation:dotFill var(--dur) linear forwards}
+@keyframes dotFill{from{width:0}to{width:100%}}
+.video-reel-mute{display:none}
 </style>
 </head>
 <body>
@@ -629,6 +842,10 @@ footer span{font-size:.78rem;color:#4a5a68}
     <a href="#logistics">Логистика</a>
     <a href="#contact">Контакты</a>
   </div>
+  <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему" title="Переключить тему">
+    <span class="theme-ico light-ico">☀️</span>
+    <span class="theme-ico dark-ico">🌙</span>
+  </button>
 </nav>
 
 <section class="hero" id="home">
@@ -637,8 +854,9 @@ footer span{font-size:.78rem;color:#4a5a68}
   <div class="hero-content">
     <h1>Автономный<br>катамаран<br><em>ледового класса</em></h1>
     <p class="hero-sub">
-      ASV-11 — беспилотное надводное судно с алюминиевым корпусом и азиподными колонками
-      для арктических исследований. Разбирается на 3 части, помещается в ISO 40' контейнер
+      ASV-11 — беспилотное надводное судно с алюминиевым корпусом и <strong>4 азиподными колонками по 200 кВт</strong>
+      для арктических исследований. Работа на глубинах до <strong>350 м</strong> и на расстоянии до <strong>100 миль</strong> от берега,
+      преимущественно в Баренцевом море. Разбирается на 3 части, помещается в ISO 40' контейнер
       и снижает стоимость морских миссий в <strong>3–5 раз.</strong>
     </p>
     <div class="hero-stats">
@@ -655,6 +873,17 @@ footer span{font-size:.78rem;color:#4a5a68}
     </div>
   </div>
 </section>
+
+<div class="video-reel-wrap">
+  <section class="video-reel" id="videoReel">
+    <video class="active" src="assets/videos/vid3.mp4" muted playsinline preload="auto"></video>
+    <video src="assets/videos/vid4.mp4" muted playsinline preload="auto"></video>
+    <video src="assets/videos/vid2.mp4" muted playsinline preload="auto"></video>
+    <video src="assets/videos/vid1.mp4" muted playsinline preload="auto"></video>
+    <div class="video-reel-dots" id="reelDots"></div>
+    <button class="video-reel-mute" id="reelMute" title="Звук">🔇</button>
+  </section>
+</div>
 
 <section class="problem-bg" id="concept">
   <div class="s-label">Концепция и задача</div>
@@ -701,7 +930,9 @@ footer span{font-size:.78rem;color:#4a5a68}
         <div class="sol-li">Алюминиевый корпус Ice-C — Арктика, шторм до 4 баллов</div>
         <div class="sol-li">Разбирается на 3 части и входит в ISO 40′ контейнер</div>
         <div class="sol-li">Модульная кассета — смена задачи за минуты в море</div>
-        <div class="sol-li">Высокая маневренность благодаря установленным азиподам</div>
+        <div class="sol-li">4 азипода × 200 кВт — суммарная мощность 800 кВт</div>
+        <div class="sol-li">Глубины до 350 м, удалённость до 100 миль от берега</div>
+        <div class="sol-li">Основной район работ — Баренцево море</div>
         <div class="sol-li">Автономность до 4.5 суток</div>
       </div>
     </div>
@@ -713,72 +944,36 @@ footer span{font-size:.78rem;color:#4a5a68}
   <h2 class="s-title">ASV-11 <span>в деталях</span></h2>
   <div class="divider"></div>
 
-  <div class="tab-bar">
-    <div class="tab on" onclick="sw(this,'p0')">Главный вид</div>
-    <div class="tab" onclick="sw(this,'p1')">Вид спереди</div>
-    <div class="tab" onclick="sw(this,'p2')">Корма</div>
-    <div class="tab" onclick="sw(this,'p3')">Профиль и верх</div>
-    <div class="tab" onclick="sw(this,'p4')">Изометрия</div>
-    <div class="tab" onclick="sw(this,'p5')">Палуба / перевозка</div>
-    <div class="tab" onclick="sw(this,'p6')">Кассета</div>
-  </div>
-
-  <div class="panels">
-    <div id="p0" class="on">
-      <div class="img-watermark-wrap"><img class="show-img" src="assets/images/main-gallery-view.jpg" alt="ASV-11 главный вид"></div>
+  <div class="showcase" id="showcase" data-showcase>
+    <div class="showcase-main">
+      <img class="active" src="assets/images/new-sailing.png"        data-caption="Движение в открытом море">
+      <img src="assets/images/new-front-iso.png"   data-caption="Вид с носа — изометрия">
+      <img src="assets/images/new-side-iso.png"     data-caption="Вид сбоку — изометрия">
+      <img src="assets/images/new-top-iso.png"      data-caption="Вид сверху">
+      <img src="assets/images/front-main.webp"      data-caption="Носовая часть">
+      <img src="assets/images/front-narrow.webp"    data-caption="Корма — узкий ракурс">
+      <img src="assets/images/isometric.webp"       data-caption="Общая изометрия">
+      <img src="assets/images/deck-transport.webp"  data-caption="Рабочая палуба">
+      <img src="assets/images/new-people-deck.png"  data-caption="Палуба — масштаб с людьми">
+      <img src="assets/images/new-ice.png"          data-caption="Работа во льдах Баренцева моря">
+      <img src="assets/images/new-storm.png"        data-caption="В штормовых условиях">
+      <img src="assets/images/cassette-new.png"     data-caption="Модульная кассета">
+      <img src="assets/images/new-moored.png"       data-caption="Ошвартован у причала">
+      <img src="assets/images/new-circle.png"       data-caption="Обзор по кругу">
+      <img src="assets/images/new-follow-me.png"    data-caption="Режим «Следуй за мной»">
+      <div class="showcase-caption" id="showcaseCaption">Движение в открытом море</div>
+      <button class="showcase-arrow left" id="showcaseLeft">&#10094;</button>
+      <button class="showcase-arrow right" id="showcaseRight">&#10095;</button>
+      <button class="showcase-pause" id="showcasePause" title="Пауза / Воспроизведение">&#10074;&#10074;</button>
     </div>
-    <div id="p1">
-      <div class="img-watermark-wrap"><img class="show-img" src="assets/images/hero-front.webp" alt="ASV-11 вид спереди"></div>
-    </div>
-    <div id="p2">
-      <div class="show-2col">
-        <figure>
-          <div class="img-watermark-wrap"><img src="assets/images/front-main.webp" alt="ASV-11 нос"></div>
-        </figure>
-        <figure>
-          <div class="img-watermark-wrap"><img src="assets/images/front-narrow.webp" alt="ASV-11 нос узкий ракурс"></div>
-        </figure>
-      </div>
-    </div>
-    <div id="p3">
-      <div class="show-2col">
-        <figure>
-          <div class="img-watermark-wrap"><img src="assets/images/side.webp" alt="ASV-11 вид сбоку"></div>
-        </figure>
-        <figure>
-          <div class="img-watermark-wrap"><img src="assets/images/top.webp" alt="ASV-11 вид сверху"></div>
-        </figure>
-      </div>
-    </div>
-    <div id="p4">
-      <div class="img-watermark-wrap"><img class="show-img" src="assets/images/isometric.webp" alt="ASV-11 изометрия"></div>
-    </div>
-    <div id="p5">
-      <div class="show-2col">
-        <figure>
-          <div class="img-watermark-wrap"><img src="assets/images/deck-transport.webp" alt="ASV-11 палуба перевозка"></div>
-        </figure>
-        <figure>
-          <div class="img-watermark-wrap"><img src="assets/images/on-platform.webp" alt="ASV-11 на носителе"></div>
-        </figure>
-      </div>
-    </div>
-    <div id="p6">
-      <div class="show-2col">
-        <figure>
-          <div class="img-watermark-wrap zoomable"><img src="assets/images/cassette-new.png" alt="Модульная кассета ASV-11 — новое фото"></div>
-        </figure>
-        <figure>
-          <div class="img-watermark-wrap"><img src="assets/images/eco-module.png" alt="Экологический модуль — батометры Нискина"></div>
-        </figure>
-      </div>
-    </div>
+    <div class="showcase-thumbs" id="showcaseThumbs"></div>
   </div>
 </section>
 
 <section class="numbers">
   <div class="num"><div class="nv">11</div><div class="nu">м</div><div class="nl">Длина</div></div>
-  <div class="num"><div class="nv">2</div><div class="nu">шт</div><div class="nl">Азиподы</div></div>
+  <div class="num"><div class="nv">8</div><div class="nu">м</div><div class="nl">Ширина</div></div>
+  <div class="num"><div class="nv">4</div><div class="nu">× 200 кВт</div><div class="nl">Азиподы</div></div>
   <div class="num"><div class="nv">4.5</div><div class="nu">сут</div><div class="nl">Автономность</div></div>
   <div class="num"><div class="nv">6</div><div class="nu">т</div><div class="nl">Нагрузка</div></div>
   <div class="num"><div class="nv">3</div><div class="nu">части</div><div class="nl">Разборка</div></div>
@@ -793,7 +988,7 @@ footer span{font-size:.78rem;color:#4a5a68}
     <div class="adv-card rv">
       <div class="adv-ico">🧭</div>
       <h3>Манёвренность</h3>
-      <p>Высокая маневренность обеспечивается установленными азиподами и уверенной работой в стеснённых условиях.</p>
+      <p>4 азипода по 200 кВт обеспечивают суммарную мощность 800 кВт и уверенную работу в стеснённых условиях на глубинах до 350 м.</p>
     </div>
     <div class="adv-card rv hl">
       <div class="adv-ico">🧊</div>
@@ -822,7 +1017,10 @@ footer span{font-size:.78rem;color:#4a5a68}
     <div class="sr"><div class="sk">Длина</div><div class="sv"><strong>11 м</strong></div></div>
     <div class="sr"><div class="sk">Ширина</div><div class="sv"><strong>8 м</strong></div></div>
     <div class="sr"><div class="sk">Ледовый класс</div><div class="sv"><span class="badge-ice">Ice-C</span> · шторм до 4 баллов</div></div>
-    <div class="sr"><div class="sk">Движитель</div><div class="sv">Высокая маневренность благодаря установленным <strong>азиподам</strong></div></div>
+    <div class="sr"><div class="sk">Движитель</div><div class="sv"><strong>4 азипода × 200 кВт</strong> (суммарная мощность <strong>800 кВт</strong>)</div></div>
+    <div class="sr"><div class="sk">Рабочая глубина</div><div class="sv">До <strong>350 м</strong></div></div>
+    <div class="sr"><div class="sk">Удалённость от берега</div><div class="sv">До <strong>100 морских миль</strong></div></div>
+    <div class="sr"><div class="sk">Основной район</div><div class="sv"><strong>Баренцево море</strong>, арктический шельф</div></div>
     <div class="sr"><div class="sk">Генераторы</div><div class="sv"><strong>1 шт</strong> дизель-генератор</div></div>
     <div class="sr"><div class="sk">Аккумуляторы</div><div class="sv"><strong>250 кВт·ч</strong> буферные АКБ</div></div>
     <div class="sr"><div class="sk">Автономность</div><div class="sv">До <strong>4.5 суток</strong></div></div>
@@ -860,13 +1058,13 @@ footer span{font-size:.78rem;color:#4a5a68}
     <div>
       <div class="plat-box rv">
         <h3>Базовые характеристики платформы</h3>
-        <div class="plat-stat"><span class="ps-val">1 шт</span><span class="ps-lbl">Дизель-генератор</span></div>
-        <div class="plat-stat"><span class="ps-val">250 кВт·ч</span><span class="ps-lbl">Буферные аккумуляторы</span></div>
+        <div class="plat-stat"><span class="ps-val">4 × 200 кВт</span><span class="ps-lbl">Азиподы (суммарно 800 кВт)</span></div>
+        <div class="plat-stat"><span class="ps-val">до 350 м</span><span class="ps-lbl">Рабочая глубина</span></div>
+        <div class="plat-stat"><span class="ps-val">до 100 миль</span><span class="ps-lbl">Удалённость от берега</span></div>
+        <div class="plat-stat"><span class="ps-val">Баренцево море</span><span class="ps-lbl">Основной район работ</span></div>
         <div class="plat-stat"><span class="ps-val">4.5 суток</span><span class="ps-lbl">Автономность</span></div>
         <div class="plat-stat"><span class="ps-val">6 т</span><span class="ps-lbl">Полезная нагрузка</span></div>
-        <div class="plat-stat"><span class="ps-val">8 м</span><span class="ps-lbl">Ширина катамарана</span></div>
         <div class="plat-stat"><span class="ps-val">20.9 м²</span><span class="ps-lbl">Площадь рабочей палубы</span></div>
-        <div class="plat-stat"><span class="ps-val">500 + 200 кг</span><span class="ps-lbl">Главная + вспомогательная лебёдки</span></div>
         <div class="plat-stat"><span class="ps-val">DP2</span><span class="ps-lbl">Система динамического позиционирования</span></div>
       </div>
     </div>
@@ -995,10 +1193,10 @@ footer span{font-size:.78rem;color:#4a5a68}
   </div>
   <div class="hiw-photos rv">
     <figure class="hiw-photo">
-      <img src="assets/images/module-lift.png" alt="Подъём модуля краном с борта судна-носителя">
+      <img src="assets/images/new-module-load.png" alt="Погрузка модуля краном">
     </figure>
     <figure class="hiw-photo">
-      <img src="assets/images/module-lower.png" alt="Спуск модуля на палубу ASV-11">
+      <img src="assets/images/new-crane-launch.png" alt="Спуск краном на воду">
     </figure>
   </div>
 </section>
@@ -1047,7 +1245,7 @@ footer span{font-size:.78rem;color:#4a5a68}
       </div>
     </div>
     <div>
-      <div class="img-watermark-wrap"><img class="show-img" src="assets/images/dp2.jpg" alt="Система динамического позиционирования класса 2 DP2"></div>
+      <div class="img-watermark-wrap"><img class="show-img" src="assets/images/new-moored.png" alt="ASV-11 ошвартован у причала"></div>
     </div>
   </div>
 </section>
@@ -1144,23 +1342,45 @@ footer span{font-size:.78rem;color:#4a5a68}
       </div>
     </div>
     <div class="cont-img">
-      <div class="img-watermark-wrap"><img src="assets/images/logistics.webp" alt="Логистика ASV-11"></div>
+      <div class="showcase" data-showcase>
+        <div class="showcase-main">
+          <img class="active" src="assets/images/new-assembly-shore.png" data-caption="Сборка на берегу">
+          <img src="assets/images/disassembled-container.webp" data-caption="В контейнере">
+          <img src="assets/images/disassembled-deck.webp" data-caption="В разборе на палубе">
+          <img src="assets/images/new-crane-launch.png" data-caption="Спуск краном">
+          <img src="assets/images/logistics.webp" data-caption="Логистика">
+          <img src="assets/images/new-module-load.png" data-caption="Погрузка модуля">
+          <div class="showcase-caption">Сборка на берегу</div>
+          <button class="showcase-arrow left">&#10094;</button>
+          <button class="showcase-arrow right">&#10095;</button>
+          <button class="showcase-pause" title="Пауза / Воспроизведение">&#10074;&#10074;</button>
+        </div>
+        <div class="showcase-thumbs"></div>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="app-bg" id="applications">
+<section class="app-bg" id="transport">
   <div class="s-label">Перевозка</div>
   <h2 class="s-title">Как перевозится <span>ASV-11</span></h2>
   <div class="divider"></div>
   <p class="s-body">Разборная архитектура позволяет перевозить платформу в контейнере, буксировать её, вести в режиме «Следуй за мной / Follow Me» и размещать на палубе носителя. Для палубной перевозки требуется подъёмное оборудование грузоподъёмностью от 30 тонн.</p>
-  <div class="transport-grid">
-    <figure class="rv">
-      <div class="img-watermark-wrap"><img src="assets/images/disassembled-deck.webp" alt="ASV-11 в разборе на палубе"></div>
-    </figure>
-    <figure class="rv">
-      <div class="img-watermark-wrap"><img src="assets/images/disassembled-container.webp" alt="ASV-11 в контейнере"></div>
-    </figure>
+  <div class="showcase rv" data-showcase>
+    <div class="showcase-main">
+      <img class="active" src="assets/images/new-tow.png" data-caption="На буксире">
+      <img src="assets/images/new-follow-me.png" data-caption="Следуй за мной">
+      <img src="assets/images/on-platform.webp" data-caption="На палубе корабля-носителя">
+      <img src="assets/images/disassembled-deck.webp" data-caption="В разборе на палубе">
+      <img src="assets/images/disassembled-container.webp" data-caption="В контейнере">
+      <img src="assets/images/new-depart-close.png" data-caption="Отход от судна">
+      <img src="assets/images/new-depart-far.png" data-caption="Уходит от судна вдаль">
+      <div class="showcase-caption">На буксире</div>
+      <button class="showcase-arrow left">&#10094;</button>
+      <button class="showcase-arrow right">&#10095;</button>
+      <button class="showcase-pause" title="Пауза / Воспроизведение">&#10074;&#10074;</button>
+    </div>
+    <div class="showcase-thumbs"></div>
   </div>
 </section>
 
@@ -1256,12 +1476,88 @@ footer span{font-size:.78rem;color:#4a5a68}
 </footer>
 
 <script>
-function sw(el, id) {
-  document.querySelectorAll('.tab-bar .tab').forEach(t => t.classList.remove('on'));
-  document.querySelectorAll('.panels > div').forEach(p => p.classList.remove('on'));
-  el.classList.add('on');
-  document.getElementById(id).classList.add('on');
+/* ── Theme switcher ── */
+(function(){
+  const toggle = document.getElementById('themeToggle');
+  const saved = localStorage.getItem('asv-theme');
+  if(saved === 'dark') document.documentElement.setAttribute('data-theme','dark');
+
+  toggle.addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    if(isDark){
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('asv-theme','light');
+    } else {
+      document.documentElement.setAttribute('data-theme','dark');
+      localStorage.setItem('asv-theme','dark');
+    }
+  });
+})();
+
+/* ── Universal Showcase gallery ── */
+function initShowcase(container) {
+  const main = container.querySelector('.showcase-main');
+  if(!main) return;
+  const imgs = main.querySelectorAll('img');
+  const caption = main.querySelector('.showcase-caption');
+  const thumbsWrap = container.querySelector('.showcase-thumbs');
+  const btnLeft = main.querySelector('.showcase-arrow.left');
+  const btnRight = main.querySelector('.showcase-arrow.right');
+  const btnPause = main.querySelector('.showcase-pause');
+  let cur = 0, timer, paused = false;
+
+  imgs.forEach((img, i) => {
+    const t = document.createElement('div');
+    t.className = 'showcase-thumb' + (i === 0 ? ' active' : '');
+    t.innerHTML = '<img src="' + img.src + '" alt="">';
+    t.addEventListener('click', () => { goTo(i); });
+    thumbsWrap.appendChild(t);
+  });
+
+  const thumbs = thumbsWrap.querySelectorAll('.showcase-thumb');
+
+  function goTo(n) {
+    imgs[cur].classList.remove('active');
+    thumbs[cur].classList.remove('active');
+    cur = ((n % imgs.length) + imgs.length) % imgs.length;
+    imgs[cur].classList.add('active');
+    thumbs[cur].classList.add('active');
+    if(caption) caption.textContent = imgs[cur].dataset.caption || '';
+    const thumb = thumbs[cur];
+    const offset = thumb.offsetLeft - thumbsWrap.offsetLeft - (thumbsWrap.clientWidth / 2) + (thumb.clientWidth / 2);
+    thumbsWrap.scrollTo({left: offset, behavior: 'smooth'});
+    if(!paused) resetTimer();
+  }
+
+  function resetTimer() {
+    clearInterval(timer);
+    timer = setInterval(() => goTo(cur + 1), 4500);
+  }
+
+  if(btnLeft) btnLeft.addEventListener('click', () => goTo(cur - 1));
+  if(btnRight) btnRight.addEventListener('click', () => goTo(cur + 1));
+
+  if(btnPause) btnPause.addEventListener('click', () => {
+    paused = !paused;
+    if(paused) {
+      clearInterval(timer);
+      btnPause.innerHTML = '&#9654;';
+      btnPause.classList.add('paused');
+    } else {
+      resetTimer();
+      btnPause.innerHTML = '&#10074;&#10074;';
+      btnPause.classList.remove('paused');
+    }
+  });
+
+  main.addEventListener('mouseenter', () => { if(!paused) clearInterval(timer); });
+  main.addEventListener('mouseleave', () => { if(!paused) resetTimer(); });
+
+  resetTimer();
 }
+document.querySelectorAll('[data-showcase]').forEach(initShowcase);
+
+function sw(el, id) {}
 
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
@@ -1291,6 +1587,76 @@ window.addEventListener('scroll', () => {
 });
 
 
+/* ── Carousel auto-play ── */
+/* Old carousel removed — all galleries use showcase now */
+
+/* ── Video reel playlist + Ambilight ── */
+(function(){
+  const reel = document.getElementById('videoReel');
+  if(!reel) return;
+  const videos = reel.querySelectorAll('video');
+  const dotsWrap = document.getElementById('reelDots');
+  const muteBtn = document.getElementById('reelMute');
+  let cur = 0, isMuted = true, isVisible = false;
+
+  /* Create dots */
+  videos.forEach((v, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'video-reel-dot' + (i === 0 ? ' active' : '');
+    dot.innerHTML = '<div class="fill"></div>';
+    dot.style.setProperty('--dur', v.duration ? v.duration + 's' : '5s');
+    dot.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(dot);
+  });
+  const dots = dotsWrap.querySelectorAll('.video-reel-dot');
+
+  videos.forEach((v, i) => {
+    v.addEventListener('loadedmetadata', () => {
+      dots[i].style.setProperty('--dur', v.duration + 's');
+    });
+  });
+
+  function goTo(n) {
+    videos[cur].pause();
+    videos[cur].currentTime = 0;
+    videos[cur].classList.remove('active');
+    dots[cur].classList.remove('active');
+    dots[cur].querySelector('.fill').style.animation = 'none';
+
+    cur = n % videos.length;
+    videos[cur].classList.add('active');
+    dots[cur].classList.add('active');
+    dots[cur].querySelector('.fill').style.animation = '';
+    dots[cur].style.setProperty('--dur', videos[cur].duration + 's');
+    videos[cur].muted = isMuted;
+    videos[cur].play();
+  }
+
+  videos.forEach((v, i) => {
+    v.addEventListener('ended', () => goTo((i + 1) % videos.length));
+  });
+
+  muteBtn.addEventListener('click', () => {
+    isMuted = !isMuted;
+    videos[cur].muted = isMuted;
+    muteBtn.textContent = isMuted ? '🔇' : '🔊';
+  });
+
+  /* Visibility observer */
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      isVisible = e.isIntersecting;
+      if(isVisible) {
+        videos[cur].play();
+        dots[cur].style.setProperty('--dur', videos[cur].duration + 's');
+      } else {
+        videos[cur].pause();
+      }
+    });
+  }, {threshold: 0.3});
+  obs.observe(reel);
+})();
+
 document.addEventListener('contextmenu', e => e.preventDefault());
 document.addEventListener('copy', e => e.preventDefault());
 document.addEventListener('cut', e => e.preventDefault());
@@ -1309,5 +1675,6 @@ document.addEventListener('keydown', e => {
   }
 });
 </script>
+
 </body>
 </html>
