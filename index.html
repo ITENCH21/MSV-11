@@ -940,7 +940,7 @@ footer span{font-size:.78rem;color:#4a5a68}
 
 <div class="video-reel-wrap">
   <section class="video-reel" id="videoReel">
-    <video class="active" poster="assets/videos/vid3-poster.jpg" muted playsinline preload="none" data-src="assets/videos/vid3.mp4"></video>
+    <video class="active" poster="assets/videos/vid3-poster.jpg" muted playsinline preload="metadata" data-src="assets/videos/vid3.mp4" src="assets/videos/vid3.mp4"></video>
     <video poster="assets/videos/vid4-poster.jpg" muted playsinline preload="none" data-src="assets/videos/vid4.mp4"></video>
     <video poster="assets/videos/vid2-poster.jpg" muted playsinline preload="none" data-src="assets/videos/vid2.mp4"></video>
     <video poster="assets/videos/vid1-poster.jpg" muted playsinline preload="none" data-src="assets/videos/vid1.mp4"></video>
@@ -1719,31 +1719,38 @@ window.addEventListener('scroll', () => {
     loader.classList.remove('active');
     cancelProgress();
   }
+  function updateProgressBar() {
+    const v = videos[cur];
+    if(!v.duration) return;
+    /* Find the MAXIMUM buffered end across all ranges */
+    let bufEnd = 0;
+    for(let i = 0; i < v.buffered.length; i++) {
+      bufEnd = Math.max(bufEnd, v.buffered.end(i));
+    }
+    const pct = Math.min(100, Math.round((bufEnd / v.duration) * 100));
+    loadFill.style.width = pct + '%';
+    loadText.textContent = pct > 0 ? ('Загрузка видео ' + pct + '%') : 'Загрузка видео...';
+    if(pct >= 100) loadText.textContent = 'Буферизация завершена';
+  }
   function trackProgress() {
     cancelProgress();
-    function update() {
-      const v = videos[cur];
-      if(v.buffered.length > 0 && v.duration) {
-        /* Find buffer range that covers current position */
-        let bufEnd = 0;
-        for(let i = 0; i < v.buffered.length; i++) {
-          if(v.buffered.start(i) <= v.currentTime) {
-            bufEnd = Math.max(bufEnd, v.buffered.end(i));
-          }
-        }
-        const pct = Math.min(100, Math.round((bufEnd / v.duration) * 100));
-        loadFill.style.width = pct + '%';
-        loadText.textContent = 'Загрузка видео ' + pct + '%';
-        if(pct >= 100) {
-          loadText.textContent = 'Буферизация завершена';
-        }
-      }
-      progressRAF = requestAnimationFrame(update);
-    }
-    progressRAF = requestAnimationFrame(update);
+    /* Use progress event for reliable buffered updates */
+    const v = videos[cur];
+    v._onProgress = () => updateProgressBar();
+    v._onDuration = () => updateProgressBar();
+    v.addEventListener('progress', v._onProgress);
+    v.addEventListener('durationchange', v._onDuration);
+    /* Also poll as fallback for browsers that fire progress rarely */
+    function poll() { updateProgressBar(); progressRAF = requestAnimationFrame(poll); }
+    progressRAF = requestAnimationFrame(poll);
   }
   function cancelProgress() {
     if(progressRAF) { cancelAnimationFrame(progressRAF); progressRAF = null; }
+    /* Clean up event listeners */
+    videos.forEach(v => {
+      if(v._onProgress) { v.removeEventListener('progress', v._onProgress); v._onProgress = null; }
+      if(v._onDuration) { v.removeEventListener('durationchange', v._onDuration); v._onDuration = null; }
+    });
   }
 
   /* ── Play button visibility ── */
