@@ -28,7 +28,7 @@
   --txt:#1A1A1A;--txt2:#5A6370;--txt-inv:#fff;
   --shadow:.09;--tbl-hover:rgba(27,42,56,.04);
   --card-sh:0 2px 6px rgba(27,42,56,.12), 0 8px 24px rgba(27,111,168,.1), 0 16px 40px rgba(27,42,56,.08);
-  --card-sh-hover:0 4px 12px rgba(224,82,6,.15), 0 12px 36px rgba(27,111,168,.18), 0 20px 50px rgba(27,42,56,.12);
+  --card-sh-hover:0 0 8px rgba(224,82,6,.4), 0 8px 28px rgba(224,82,6,.3), 0 20px 50px rgba(224,82,6,.15);
   --card-grad:linear-gradient(180deg, rgba(255,255,255,.7) 0%, rgba(242,248,252,.3) 100%);
   --badge-y-bg:#FFF3CC;--badge-y-c:#7a5500;--badge-y-b:#E5AE00;
   --badge-bl-bg:#DCEEFF;--badge-bl-c:#1B6FA8;--badge-bl-b:#1B6FA8;
@@ -205,7 +205,10 @@ section{padding:96px 8%}
 .sol-box{
   background:var(--navy);border-radius:14px;padding:38px 36px;
   position:relative;overflow:hidden;
+  box-shadow:0 4px 16px rgba(0,0,0,.15), 0 12px 40px rgba(27,42,56,.12);
+  transition:.3s;
 }
+.sol-box:hover{box-shadow:0 4px 16px rgba(224,82,6,.2), 0 16px 48px rgba(224,82,6,.12);transform:translateY(-3px)}
 .sol-box::before{
   content:'';position:absolute;top:-50px;right:-50px;
   width:200px;height:200px;border-radius:50%;background:rgba(224,82,6,.12);
@@ -225,8 +228,10 @@ section{padding:96px 8%}
 .showcase{max-width:960px;margin:0 auto}
 .showcase-main{
   position:relative;width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;
-  box-shadow:0 12px 40px rgba(0,0,0,.18);margin-bottom:16px;background:#0d1820;
+  box-shadow:0 4px 12px rgba(0,0,0,.1), 0 12px 40px rgba(27,42,56,.15);margin-bottom:16px;background:#0d1820;
+  transition:box-shadow .3s;
 }
+.showcase-main:hover{box-shadow:0 4px 12px rgba(224,82,6,.15), 0 16px 48px rgba(224,82,6,.12)}
 .cont-img .showcase{max-width:100%}
 .cont-img .showcase-main{margin-bottom:8px}
 .cont-img .showcase-thumbs{gap:5px}
@@ -320,7 +325,8 @@ section{padding:96px 8%}
   display:grid;grid-template-columns:1fr 1fr;gap:16px;
   max-width:960px;margin:0 auto;
 }
-.gallery-grid figure{margin:0;overflow:hidden;border-radius:10px;box-shadow:0 6px 22px rgba(0,0,0,.12)}
+.gallery-grid figure{margin:0;overflow:hidden;border-radius:10px;box-shadow:var(--card-sh);transition:.3s}
+.gallery-grid figure:hover{box-shadow:var(--card-sh-hover);transform:translateY(-3px)}
 .gallery-grid img{
   width:100%;height:280px;object-fit:cover;display:block;
   transition:transform .35s ease;
@@ -393,6 +399,7 @@ section{padding:96px 8%}
 .cont-info{
   background:var(--navy);border-radius:14px;padding:42px 48px;
   display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center;
+  box-shadow:0 4px 16px rgba(0,0,0,.15), 0 12px 40px rgba(27,42,56,.12);
 }
 .cont-info h3{font-size:1.55rem;font-weight:800;color:#fff;margin-bottom:12px}
 .cont-info p{color:#a8c4d8;line-height:1.65;font-size:.94rem}
@@ -508,11 +515,13 @@ section{padding:96px 8%}
   background:var(--navy);border:3px solid var(--orange);z-index:1;
   display:flex;align-items:center;justify-content:center;
   font-size:1.1rem;font-weight:900;color:var(--orange);
+  box-shadow:0 0 0 4px rgba(224,82,6,.15), 0 4px 12px rgba(0,0,0,.15);
 }
 .tl-body{
   background:var(--card-grad),var(--card);border:1px solid var(--border);border-radius:9px;
   padding:20px 24px;flex:1;box-shadow:var(--card-sh);
 }
+.tl-body:hover{box-shadow:var(--card-sh-hover);transform:translateX(4px)}
 .tl-body h4{font-weight:700;color:var(--dark);margin-bottom:5px}
 .tl-dur{
   font-size:.76rem;font-weight:700;color:var(--orange);
@@ -522,8 +531,9 @@ section{padding:96px 8%}
 .tl-body p{font-size:.86rem;color:var(--grey);line-height:1.6}
 .total-box{
   margin-top:28px;padding:20px 28px;
-  background:var(--light);border-radius:8px;border-left:4px solid var(--orange);
+  background:var(--card-grad),var(--card);border:1px solid var(--border);border-radius:8px;border-left:4px solid var(--orange);
   display:inline-flex;align-items:center;gap:12px;flex-wrap:wrap;
+  box-shadow:var(--card-sh);
 }
 .total-box strong{font-size:.92rem;color:var(--dark)}
 .total-box .big{font-size:1.3rem;font-weight:900;color:var(--orange)}
@@ -572,7 +582,7 @@ footer span{font-size:.78rem;color:#4a5a68}
 .plat-features{display:flex;flex-direction:column;gap:13px;margin-top:22px}
 .plat-feat{display:flex;align-items:flex-start;gap:11px;color:var(--grey);font-size:.875rem;line-height:1.55}
 .plat-feat::before{content:'▸';color:var(--orange);font-weight:800;flex-shrink:0;margin-top:1px}
-.plat-box{background:var(--navy);border-radius:14px;padding:34px 30px}
+.plat-box{background:var(--navy);border-radius:14px;padding:34px 30px;box-shadow:0 4px 16px rgba(0,0,0,.15), 0 12px 40px rgba(27,42,56,.12)}
 .plat-box h3{font-size:1.15rem;font-weight:800;color:#fff;margin-bottom:18px}
 .plat-stat{display:flex;align-items:center;gap:14px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.07)}
 .plat-stat:last-child{border:none}
@@ -595,7 +605,7 @@ footer span{font-size:.78rem;color:#4a5a68}
 .mod-card.slate::before{background:#4a6070}
 .mod-card.orange::before{background:#E05206}
 .mod-card.teal::before{background:#148080}
-.mod-card:hover{box-shadow:0 10px 32px rgba(0,0,0,.11);transform:translateY(-4px)}
+.mod-card:hover{box-shadow:var(--card-sh-hover);transform:translateY(-4px)}
 .mod-badge{display:inline-block;font-size:.68rem;font-weight:800;letter-spacing:.7px;text-transform:uppercase;border-radius:3px;padding:3px 9px;margin-bottom:9px}
 
 /* ── How it works ── */
@@ -809,6 +819,19 @@ footer span{font-size:.78rem;color:#4a5a68}
   object-fit:cover;aspect-ratio:16/9;border-radius:8px;
 }
 .video-reel video.active{opacity:1;position:relative}
+.video-play-btn{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:5;
+  background:none;border:none;cursor:pointer;padding:0;
+  transition:transform .3s ease,opacity .3s ease;opacity:1;
+}
+.video-play-btn:hover{transform:translate(-50%,-50%) scale(1.15)}
+.video-play-btn.hidden{opacity:0;pointer-events:none;transform:translate(-50%,-50%) scale(.5)}
+.video-play-btn.pause-icon svg circle{fill:rgba(0,0,0,.45)}
+.video-play-btn.pause-icon svg polygon{display:none}
+.video-play-btn.pause-icon svg::after{content:''}
+.video-pause-bars{display:none;fill:#fff}
+.video-play-btn.pause-icon .video-pause-bars{display:block}
+.video-play-btn.pause-icon .video-play-tri{display:none}
 .video-reel-dots{display:none}
 .video-reel-dot{
   width:28px;height:3px;border-radius:2px;background:rgba(255,255,255,.35);
@@ -876,10 +899,17 @@ footer span{font-size:.78rem;color:#4a5a68}
 
 <div class="video-reel-wrap">
   <section class="video-reel" id="videoReel">
-    <video class="active" src="assets/videos/vid3.mp4" poster="assets/videos/vid3-poster.jpg" muted playsinline preload="auto"></video>
+    <video class="active" poster="assets/videos/vid3-poster.jpg" muted playsinline preload="none" data-src="assets/videos/vid3.mp4"></video>
     <video poster="assets/videos/vid4-poster.jpg" muted playsinline preload="none" data-src="assets/videos/vid4.mp4"></video>
     <video poster="assets/videos/vid2-poster.jpg" muted playsinline preload="none" data-src="assets/videos/vid2.mp4"></video>
     <video poster="assets/videos/vid1-poster.jpg" muted playsinline preload="none" data-src="assets/videos/vid1.mp4"></video>
+    <button class="video-play-btn" id="videoPlayBtn" aria-label="Воспроизвести">
+      <svg viewBox="0 0 80 80" width="80" height="80">
+        <circle cx="40" cy="40" r="38" fill="rgba(0,0,0,.5)" stroke="rgba(255,255,255,.8)" stroke-width="2.5"/>
+        <polygon class="video-play-tri" points="32,24 32,56 60,40" fill="#fff"/>
+        <g class="video-pause-bars"><rect x="28" y="24" width="8" height="32" rx="2"/><rect x="44" y="24" width="8" height="32" rx="2"/></g>
+      </svg>
+    </button>
     <div class="video-reel-dots" id="reelDots"></div>
     <button class="video-reel-mute" id="reelMute" title="Звук">🔇</button>
   </section>
@@ -1590,46 +1620,63 @@ window.addEventListener('scroll', () => {
 /* ── Carousel auto-play ── */
 /* Old carousel removed — all galleries use showcase now */
 
-/* ── Video reel playlist (lazy load) ── */
+/* ── Video reel playlist (YouTube-style controls) ── */
 (function(){
   const reel = document.getElementById('videoReel');
   if(!reel) return;
   const videos = reel.querySelectorAll('video');
   const dotsWrap = document.getElementById('reelDots');
   const muteBtn = document.getElementById('reelMute');
+  const playBtn = document.getElementById('videoPlayBtn');
   let cur = 0, isMuted = true, isVisible = false;
+  let started = false;      /* first play happened */
+  let hideTimer = null;      /* auto-hide timeout */
 
-  /* Lazy load: set src from data-src when needed */
+  /* ── Lazy load ── */
   function ensureLoaded(v) {
-    if(!v.src && v.dataset.src) {
+    if(!v.getAttribute('src') && v.dataset.src) {
       v.src = v.dataset.src;
       v.load();
     }
   }
-
-  /* Preload the next video in advance */
   function preloadNext() {
-    const next = (cur + 1) % videos.length;
-    ensureLoaded(videos[next]);
+    ensureLoaded(videos[(cur + 1) % videos.length]);
   }
 
-  /* Create dots */
+  /* ── Play button visibility ── */
+  function showBtn(asPause) {
+    playBtn.classList.remove('hidden');
+    if(asPause) playBtn.classList.add('pause-icon');
+    else playBtn.classList.remove('pause-icon');
+  }
+  function hideBtn() {
+    playBtn.classList.add('hidden');
+  }
+  function scheduleHide(ms) {
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(hideBtn, ms || 2500);
+  }
+  function cancelHide() {
+    clearTimeout(hideTimer);
+  }
+
+  /* ── Dots (hidden but still functional) ── */
   videos.forEach((v, i) => {
     const dot = document.createElement('div');
     dot.className = 'video-reel-dot' + (i === 0 ? ' active' : '');
     dot.innerHTML = '<div class="fill"></div>';
     dot.style.setProperty('--dur', v.duration ? v.duration + 's' : '5s');
-    dot.addEventListener('click', () => goTo(i));
+    dot.addEventListener('click', () => { if(started) goTo(i); });
     dotsWrap.appendChild(dot);
   });
   const dots = dotsWrap.querySelectorAll('.video-reel-dot');
-
   videos.forEach((v, i) => {
     v.addEventListener('loadedmetadata', () => {
       dots[i].style.setProperty('--dur', v.duration + 's');
     });
   });
 
+  /* ── Switch video ── */
   function goTo(n) {
     videos[cur].pause();
     videos[cur].currentTime = 0;
@@ -1645,30 +1692,93 @@ window.addEventListener('scroll', () => {
     dots[cur].style.setProperty('--dur', videos[cur].duration + 's');
     videos[cur].muted = isMuted;
     videos[cur].play();
+    hideBtn();
     preloadNext();
   }
 
+  /* Auto-advance on end */
   videos.forEach((v, i) => {
     v.addEventListener('ended', () => goTo((i + 1) % videos.length));
   });
 
-  muteBtn.addEventListener('click', () => {
+  /* ── Play button click ── */
+  playBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    cancelHide();
+    const v = videos[cur];
+
+    if(!started) {
+      /* First ever click — load & play */
+      started = true;
+      ensureLoaded(v);
+      v.muted = isMuted;
+      v.play();
+      hideBtn();
+      preloadNext();
+    } else if(v.paused) {
+      /* Resume */
+      v.play();
+      hideBtn();
+    } else {
+      /* Pause */
+      v.pause();
+      showBtn(false); /* show play icon, stay visible */
+    }
+  });
+
+  /* ── Tap / click on video area ── */
+  reel.addEventListener('click', (e) => {
+    /* Ignore clicks on button itself or mute */
+    if(playBtn.contains(e.target) || muteBtn.contains(e.target)) return;
+
+    if(!started) return; /* before first play, do nothing (button handles it) */
+
+    const v = videos[cur];
+    if(v.paused) {
+      /* Video paused → play & hide button */
+      v.play();
+      hideBtn();
+    } else {
+      /* Video playing → show pause icon briefly */
+      showBtn(true);
+      scheduleHide(2500);
+    }
+  });
+
+  /* ── Mouse move on reel → briefly show button ── */
+  reel.addEventListener('mousemove', () => {
+    if(!started || videos[cur].paused) return;
+    showBtn(true);
+    scheduleHide(2500);
+  });
+
+  /* ── Mouse leaves reel → hide immediately ── */
+  reel.addEventListener('mouseleave', () => {
+    if(!started || videos[cur].paused) return;
+    scheduleHide(800);
+  });
+
+  /* ── Mute ── */
+  muteBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
     isMuted = !isMuted;
     videos[cur].muted = isMuted;
     muteBtn.textContent = isMuted ? '🔇' : '🔊';
   });
 
-  /* Visibility observer */
+  /* ── Visibility observer — pause off-screen, DON'T auto-start ── */
+  let wasPlaying = false;
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       isVisible = e.isIntersecting;
-      if(isVisible) {
-        ensureLoaded(videos[cur]);
-        videos[cur].play();
-        dots[cur].style.setProperty('--dur', videos[cur].duration + 's');
-        preloadNext();
-      } else {
+      if(!started) return;
+      if(!isVisible) {
+        wasPlaying = !videos[cur].paused;
         videos[cur].pause();
+      } else if(wasPlaying) {
+        videos[cur].play();
+        hideBtn();
+        wasPlaying = false;
       }
     });
   }, {threshold: 0.3});
