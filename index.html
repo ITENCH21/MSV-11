@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ASV-11 — Автономный катамаран ледового класса | WestSeal</title>
+<title>ASV-11 — Автономный катамаран ледового класса | Labcluster</title>
 <meta name="description" content="Презентация проекта ASV-11: конструкция, перевозка, технические характеристики, применение и дорожная карта.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://itench21.github.io/ASV-11/">
@@ -162,6 +162,7 @@ nav{
 .hero{
   min-height:100vh;position:relative;display:flex;align-items:center;
   background:var(--navy);overflow:hidden;
+  padding-left:0;padding-right:0;
 }
 .hero-bg{
   position:absolute;inset:0;z-index:0;width:100%;height:100%;
@@ -171,7 +172,7 @@ nav{
   position:absolute;inset:0;z-index:1;
   background:linear-gradient(135deg,rgba(27,42,56,.93) 0%,rgba(27,42,56,.65) 55%,rgba(27,42,56,.2) 100%);
 }
-.hero-content{position:relative;z-index:2;max-width:820px;padding:130px 8% 90px}
+.hero-content{position:relative;z-index:2;max-width:820px;width:100%;padding:130px 8% 90px}
 .hero h1{
   font-size:clamp(3rem,6.5vw,5.5rem);font-weight:900;color:#fff;
   line-height:1.05;margin-bottom:22px;letter-spacing:-1.5px;
@@ -254,11 +255,13 @@ section{padding:96px 8%}
   opacity:0;transition:opacity .5s ease;
 }
 .showcase-main img.active{opacity:1}
-.showcase-caption{
-  position:absolute;bottom:0;left:0;right:0;z-index:2;
-  padding:8px 16px;
-  background:linear-gradient(transparent,rgba(0,0,0,.6));
-  font-size:.78rem;font-weight:600;color:#fff;letter-spacing:.3px;
+.showcase-caption{display:none}
+.showcase-main::after{
+  content:"Labcluster";
+  position:absolute;left:12px;bottom:12px;z-index:3;
+  color:rgba(255,255,255,.92);background:rgba(27,42,56,.55);backdrop-filter:blur(4px);
+  font-size:.72rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;
+  pointer-events:none;text-shadow:0 1px 4px rgba(0,0,0,.25);padding:6px 10px;border-radius:999px;
 }
 .showcase-arrow{
   position:absolute;top:50%;transform:translateY(-50%);z-index:3;
@@ -305,7 +308,7 @@ section{padding:96px 8%}
 .zoomable{overflow:hidden;cursor:zoom-in}
 .zoomable img{transition:transform .28s ease}
 .img-watermark-wrap::after{
-  content:"WestSeal";
+  content:"Labcluster";
   position:absolute;left:12px;bottom:12px;
   color:rgba(255,255,255,.92);background:rgba(27,42,56,.55);backdrop-filter:blur(4px);
   font-size:.72rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;
@@ -427,6 +430,12 @@ section{padding:96px 8%}
 .cont-img img{
   width:100%;border-radius:10px;box-shadow:0 8px 32px rgba(0,0,0,.3);
   object-fit:cover;height:260px;
+}
+.cont-img .showcase-main img{
+  height:100%;border-radius:0;box-shadow:none;object-fit:cover;
+}
+.cont-img .showcase-thumb img{
+  height:100%;border-radius:0;box-shadow:none;object-fit:cover;
 }
 
 .app-bg{background:var(--grad-cont)}
@@ -894,7 +903,7 @@ footer span{font-size:.78rem;color:#4a5a68}
   <div class="nav-logo">
     <div>
       <span class="nl-name">ASV-11</span>
-      <span class="nl-sub">WestSeal · westseal.ru</span>
+      <span class="nl-sub">Labcluster · labcluster.ru</span>
     </div>
   </div>
   <button class="nav-toggle" id="navToggle" aria-label="Открыть меню">☰</button>
@@ -921,13 +930,13 @@ footer span{font-size:.78rem;color:#4a5a68}
     <p class="hero-sub">
       ASV-11 — беспилотное надводное судно с алюминиевым корпусом и <strong>4 азиподными колонками по 200 кВт</strong>
       для арктических исследований. Работа на глубинах до <strong>350 м</strong> и на расстоянии до <strong>100 миль</strong> от берега,
-      преимущественно в Баренцевом море. Разбирается на 3 части, помещается в ISO 40' контейнер
-      и снижает стоимость морских миссий в <strong>3–5 раз.</strong>
+      преимущественно в Баренцевом море. Разбирается на 3 части, помещается в три ISO 40' контейнера
+      и снижает стоимость морских миссий в <strong>2–3 раза.</strong>
     </p>
     <div class="hero-stats">
       <div class="h-stat"><div class="v">11 м</div><div class="l">Длина</div></div>
       <div class="h-stat"><div class="v">4.5 сут</div><div class="l">Автономность</div></div>
-      <div class="h-stat"><div class="v">Ice-C</div><div class="l">Ледовый класс</div></div>
+      <div class="h-stat"><div class="v">ICE-10</div><div class="l">Ледовый класс</div></div>
       <div class="h-stat"><div class="v">ISO 40'</div><div class="l">Контейнер</div></div>
     </div>
     <div class="hero-btns">
@@ -1020,10 +1029,10 @@ footer span{font-size:.78rem;color:#4a5a68}
     <div>
       <div class="sol-box rv">
         <h3>Решение — ASV-11</h3>
-        <p>Полностью автономный катамаран ледового класса, устраняющий ключевые проблемы морских операций: снижает стоимость, исключает риск для людей и обеспечивает доступ в удалённые точки через ISO 40' контейнер.</p>
+        <p>Полностью автономный катамаран ледового класса, устраняющий ключевые проблемы морских операций: снижает стоимость, исключает риск для людей и обеспечивает доступ в удалённые точки через три ISO 40' контейнера.</p>
         <div class="sol-li">Беспилотная работа 24/7 без участия экипажа</div>
-        <div class="sol-li">Алюминиевый корпус Ice-C — Арктика, шторм до 4 баллов</div>
-        <div class="sol-li">Разбирается на 3 части и входит в ISO 40′ контейнер</div>
+        <div class="sol-li">Алюминиевый корпус ICE-10 — Арктика, шторм до 4 баллов</div>
+        <div class="sol-li">Разбирается на 3 части и входит в три ISO 40′ контейнера</div>
         <div class="sol-li">Модульная кассета — смена задачи за минуты в море</div>
         <div class="sol-li">4 азипода × 200 кВт — суммарная мощность 800 кВт</div>
         <div class="sol-li">Глубины до 350 м, удалённость до 100 миль от берега</div>
@@ -1072,7 +1081,7 @@ footer span{font-size:.78rem;color:#4a5a68}
   <div class="num"><div class="nv">4.5</div><div class="nu">сут</div><div class="nl">Автономность</div></div>
   <div class="num"><div class="nv">6</div><div class="nu">т</div><div class="nl">Нагрузка</div></div>
   <div class="num"><div class="nv">3</div><div class="nu">части</div><div class="nl">Разборка</div></div>
-  <div class="num"><div class="nv">Ice-C</div><div class="nu">класс</div><div class="nl">Регистр</div></div>
+  <div class="num"><div class="nv">ICE-10</div><div class="nu">класс</div><div class="nl">Регистр</div></div>
 </section>
 
 <section class="adv-bg" id="advantages">
@@ -1093,7 +1102,7 @@ footer span{font-size:.78rem;color:#4a5a68}
     <div class="adv-card rv">
       <div class="adv-ico">📦</div>
       <h3>Контейнерная логистика</h3>
-      <p>Разборная схема позволяет перевозить платформу в ISO 40' контейнере без негабаритной логистики.</p>
+      <p>Разборная схема позволяет перевозить платформу в трёх ISO 40' контейнерах без негабаритной логистики.</p>
     </div>
     <div class="adv-card rv">
       <div class="adv-ico">🔁</div>
@@ -1111,7 +1120,7 @@ footer span{font-size:.78rem;color:#4a5a68}
     <div class="sr"><div class="sk">Тип</div><div class="sv">Автономный катамаран ледового класса (ASV)</div></div>
     <div class="sr"><div class="sk">Длина</div><div class="sv"><strong>11 м</strong></div></div>
     <div class="sr"><div class="sk">Ширина</div><div class="sv"><strong>8 м</strong></div></div>
-    <div class="sr"><div class="sk">Ледовый класс</div><div class="sv"><span class="badge-ice">Ice-C</span> · шторм до 4 баллов</div></div>
+    <div class="sr"><div class="sk">Ледовый класс</div><div class="sv"><span class="badge-ice">ICE-10</span> · шторм до 4 баллов</div></div>
     <div class="sr"><div class="sk">Движитель</div><div class="sv"><strong>4 азипода × 200 кВт</strong> (суммарная мощность <strong>800 кВт</strong>)</div></div>
     <div class="sr"><div class="sk">Рабочая глубина</div><div class="sv">До <strong>350 м</strong></div></div>
     <div class="sr"><div class="sk">Удалённость от берега</div><div class="sv">До <strong>100 морских миль</strong></div></div>
@@ -1122,8 +1131,8 @@ footer span{font-size:.78rem;color:#4a5a68}
     <div class="sr"><div class="sk">Полезная нагрузка</div><div class="sv"><strong>6 т</strong></div></div>
     <div class="sr"><div class="sk">Рабочая палуба</div><div class="sv"><strong>20.9 м²</strong></div></div>
     <div class="sr"><div class="sk">Лебёдки</div><div class="sv"><strong>500 кг</strong> (главная) + <strong>200 кг</strong> (вспомогательная)</div></div>
-    <div class="sr"><div class="sk">Позиционирование</div><div class="sv">Система позиционирования <strong>DP2</strong></div></div>
-    <div class="sr"><div class="sk">Логистика</div><div class="sv">Разборка на 3 части, ISO <strong>40′</strong></div></div>
+    <div class="sr"><div class="sk">Позиционирование</div><div class="sv">Система позиционирования <strong>DP1</strong></div></div>
+    <div class="sr"><div class="sk">Логистика</div><div class="sv">Разборка на 3 части, 3× ISO <strong>40′</strong></div></div>
     <div class="sr"><div class="sk">Кассеты (5 типов)</div><div class="sv">Экология · Доплеровский профилограф · Планктон · ROV · Буксируемые</div></div>
   </div>
 </section>
@@ -1160,7 +1169,7 @@ footer span{font-size:.78rem;color:#4a5a68}
         <div class="plat-stat"><span class="ps-val">4.5 суток</span><span class="ps-lbl">Автономность</span></div>
         <div class="plat-stat"><span class="ps-val">6 т</span><span class="ps-lbl">Полезная нагрузка</span></div>
         <div class="plat-stat"><span class="ps-val">20.9 м²</span><span class="ps-lbl">Площадь рабочей палубы</span></div>
-        <div class="plat-stat"><span class="ps-val">DP2</span><span class="ps-lbl">Система динамического позиционирования</span></div>
+        <div class="plat-stat"><span class="ps-val">DP1</span><span class="ps-lbl">Система динамического позиционирования</span></div>
       </div>
     </div>
   </div>
@@ -1319,7 +1328,7 @@ footer span{font-size:.78rem;color:#4a5a68}
         <div class="conn-item"><span class="conn-ico">⚡</span><div class="conn-text"><strong>10 кВт</strong> — силовой авто-разъём соединяется при посадке кассеты</div></div>
         <div class="conn-item"><span class="conn-ico">🌐</span><div class="conn-text"><strong>Ethernet 1 Гбит/с</strong> — командная шина и телеметрия реального времени</div></div>
         <div class="conn-item"><span class="conn-ico">💡</span><div class="conn-text"><strong>Оптоволокно</strong> — видео HD, сейсмические и гидроакустические данные</div></div>
-        <div class="conn-item"><span class="conn-ico">📡</span><div class="conn-text"><strong>DP2 + навигационный комплекс</strong> — позиционирование платформы с точностью <strong>1-1.5 м</strong></div></div>
+        <div class="conn-item"><span class="conn-ico">📡</span><div class="conn-text"><strong>DP1 + навигационный комплекс</strong> — позиционирование платформы с точностью <strong>1-1.5 м</strong></div></div>
         <div class="conn-item"><span class="conn-ico">🔩</span><div class="conn-text"><strong>4 конических направляющих</strong> — точная установка в шторм без ручной наводки</div></div>
       </div>
     </div>
@@ -1328,15 +1337,15 @@ footer span{font-size:.78rem;color:#4a5a68}
 
 <section class="platform-bg" id="dp2">
   <div class="s-label">Позиционирование</div>
-  <h2 class="s-title">Система динамического позиционирования класса 2 <span>(DP2)</span></h2>
+  <h2 class="s-title">Система динамического позиционирования класса 1 <span>(DP1)</span></h2>
   <div class="divider"></div>
   <div class="p2-grid">
     <div>
-      <p class="s-body" style="margin-bottom:26px">ASV-11 оснащается системой динамического позиционирования класса 2 (DP2), которая удерживает платформу в заданной точке и обеспечивает устойчивую работу оборудования при выполнении точных морских операций.</p>
+      <p class="s-body" style="margin-bottom:26px">ASV-11 оснащается системой динамического позиционирования класса 1 (DP1), которая удерживает платформу в заданной точке и обеспечивает устойчивую работу оборудования при выполнении точных морских операций.</p>
       <div class="pp-list">
-        <div class="pp-item rv"><div class="pp-icon">📍</div><div class="pp-body"><h4>Точное удержание точки</h4><p>DP2 поддерживает рабочее положение платформы при океанологических, экологических и инспекционных работах.</p></div></div>
+        <div class="pp-item rv"><div class="pp-icon">📍</div><div class="pp-body"><h4>Точное удержание точки</h4><p>DP1 поддерживает рабочее положение платформы при океанологических, экологических и инспекционных работах.</p></div></div>
         <div class="pp-item rv"><div class="pp-icon">🧭</div><div class="pp-body"><h4>Устойчивость курса</h4><p>Система компенсирует воздействие ветра, течения и волны, помогая сохранять заданный вектор работы.</p></div></div>
-        <div class="pp-item rv"><div class="pp-icon">🛡️</div><div class="pp-body"><h4>Резервирование функций</h4><p>Класс DP2 используется для более надёжной работы платформы при точных операциях рядом с объектами и оборудованием.</p></div></div>
+        <div class="pp-item rv"><div class="pp-icon">🛡️</div><div class="pp-body"><h4>Резервирование функций</h4><p>Класс DP1 используется для более надёжной работы платформы при точных операциях рядом с объектами и оборудованием.</p></div></div>
       </div>
     </div>
     <div>
@@ -1440,7 +1449,7 @@ footer span{font-size:.78rem;color:#4a5a68}
       <div class="showcase" data-showcase>
         <div class="showcase-main">
           <img class="active" src="assets/images/new-assembly-shore.png" data-caption="Сборка на берегу">
-          <img src="assets/images/disassembled-container.webp" data-caption="В контейнере">
+          <img src="assets/images/three-containers.png" data-caption="В трёх контейнерах">
           <img src="assets/images/disassembled-deck.webp" data-caption="В разборе на палубе">
           <img src="assets/images/new-crane-launch.png" data-caption="Спуск краном">
           <img src="assets/images/logistics.webp" data-caption="Логистика">
@@ -1460,14 +1469,13 @@ footer span{font-size:.78rem;color:#4a5a68}
   <div class="s-label">Перевозка</div>
   <h2 class="s-title">Как перевозится <span>ASV-11</span></h2>
   <div class="divider"></div>
-  <p class="s-body">Разборная архитектура позволяет перевозить платформу в контейнере, буксировать её, вести в режиме «Следуй за мной / Follow Me» и размещать на палубе носителя. Для палубной перевозки требуется подъёмное оборудование грузоподъёмностью от 30 тонн.</p>
+  <p class="s-body">Разборная архитектура позволяет перевозить платформу в трёх ISO 40' контейнерах, буксировать её, вести в режиме «Следуй за мной / Follow Me» и размещать на палубе носителя. Для палубной перевозки требуется подъёмное оборудование грузоподъёмностью от 30 тонн.</p>
   <div class="showcase rv" data-showcase>
     <div class="showcase-main">
       <img class="active" src="assets/images/new-tow.png" data-caption="На буксире">
       <img src="assets/images/new-follow-me.png" data-caption="Следуй за мной">
       <img src="assets/images/on-platform.webp" data-caption="На палубе корабля-носителя">
-      <img src="assets/images/disassembled-deck.webp" data-caption="В разборе на палубе">
-      <img src="assets/images/disassembled-container.webp" data-caption="В контейнере">
+      <img src="assets/images/three-containers.png" data-caption="В трёх контейнерах">
       <img src="assets/images/new-depart-close.png" data-caption="Отход от судна">
       <img src="assets/images/new-depart-far.png" data-caption="Уходит от судна вдаль">
       <div class="showcase-caption">На буксире</div>
@@ -1512,18 +1520,18 @@ footer span{font-size:.78rem;color:#4a5a68}
           <p><span class="why-hl">собственный технический отдел</span>, занимающийся разработкой и аттестацией лабораторного оборудования, а также оборудования для судов (в частности, опреснительными установками).</p>
         </div>
         <div class="why-subcard">
-          <p><span class="why-hl o">отдел метрологии и качества</span>, способный разработать и аттестовать собственные методики, в частности, по отбору проб с дрона.</p>
+          <p><span class="why-hl o">отдел метрологии и качества</span>, способный разработать и аттестовать собственные методики, в частности, по отбору проб с БЭКа (безэкипажного катера).</p>
         </div>
       </div>
-      <p class="why-tail">Такой симбиоз гарантирует, что дрон будет спроектирован под реальные задачи ученых, а не инженеров-судостроителей или поставщиков оборудования. <span class="why-hl">Мы не просто предлагаем построить дрон, мы создаем комплексную лабораторию на воде.</span></p>
+      <p class="why-tail">Такой симбиоз гарантирует, что БЭК (безэкипажный катер) будет спроектирован под реальные задачи ученых, а не инженеров-судостроителей или поставщиков оборудования. <span class="why-hl">Мы не просто предлагаем построить БЭК, мы создаем комплексную лабораторию на воде.</span></p>
     </article>
     <article class="why-card ac-teal rv">
       <div class="why-num">2</div>
-      <p>Поэтому мы предлагаем ГПН рассматривать нас <span class="why-hl">не как подрядчика, а как долгосрочного партнера</span> по развитию и удешевлению морских технологий. Мы хотим заняться дальнейшей эксплуатацией совместно разработанного дрона на объектах ГПН, а также задействовать его в Российских и международных проектах в период отсутствия навигации в Арктике.</p>
+      <p>Поэтому мы предлагаем ГПН рассматривать нас <span class="why-hl">не как подрядчика, а как долгосрочного партнера</span> по развитию и удешевлению морских технологий. Мы хотим заняться дальнейшей эксплуатацией совместно разработанного БЭКа на объектах ГПН, а также задействовать его в Российских и международных проектах в период отсутствия навигации в Арктике.</p>
     </article>
     <article class="why-card ac-orange rv">
       <div class="why-num">3</div>
-      <p>Адаптировать модули дрона под специфические задачи компании. Например, <span class="why-hl o">высокоточный отбор геохимических проб (погрешность 1-1,5 метра)</span> с применением дп3 и подводной навигации при геологоразведке, и дальнейшая обработка отобранных образцов на борту материнского судна, либо в наших стационарных лабораториях.</p>
+      <p>Адаптировать модули БЭКа под специфические задачи компании. Например, <span class="why-hl o">высокоточный отбор геохимических проб (погрешность 1-1,5 метра)</span> с применением DP1 и подводной навигации при геологоразведке, и дальнейшая обработка отобранных образцов на борту материнского судна, либо в наших стационарных лабораториях.</p>
     </article>
     <article class="why-card ac-blue rv">
       <div class="why-num">4</div>
@@ -1541,14 +1549,13 @@ footer span{font-size:.78rem;color:#4a5a68}
   <h2 class="s-title">Этапы <span>реализации</span></h2>
   <div class="divider"></div>
   <div class="timeline">
-    <div class="tl-item rv"><div class="tl-dot">1</div><div class="tl-body"><h4>Проектирование</h4><span class="tl-dur">2–3 месяца</span><p>Рабочая КД, 3D-модель, ТЭО и согласование с РМРС.</p></div></div>
-    <div class="tl-item rv"><div class="tl-dot">2</div><div class="tl-body"><h4>Постройка прототипа</h4><span class="tl-dur">3–5 месяцев</span><p>Корпус, азиподы, силовая установка, лебёдка, кассета и палубное оборудование.</p></div></div>
-    <div class="tl-item rv"><div class="tl-dot">3</div><div class="tl-body"><h4>Испытания и сертификация</h4><span class="tl-dur">1–2 месяца</span><p>Ходовые тесты, автономный режим и контейнерная погрузка.</p></div></div>
-    <div class="tl-item rv"><div class="tl-dot">4</div><div class="tl-body"><h4>Серийное производство</h4><span class="tl-dur">6+ месяцев</span><p>Выход на серию, сервис и развитие партнёрской сети.</p></div></div>
+    <div class="tl-item rv"><div class="tl-dot">1</div><div class="tl-body"><h4>Проектирование</h4><span class="tl-dur">3–4 месяца</span><p>Рабочая КД, 3D-модель, ТЭО и согласование с РМРС.</p></div></div>
+    <div class="tl-item rv"><div class="tl-dot">2</div><div class="tl-body"><h4>Постройка прототипа</h4><span class="tl-dur">4–6 месяцев</span><p>Корпус, азиподы, силовая установка, лебёдка, кассета и палубное оборудование.</p></div></div>
+    <div class="tl-item rv"><div class="tl-dot">3</div><div class="tl-body"><h4>Испытания и сертификация</h4><span class="tl-dur">2–3 месяца</span><p>Ходовые тесты, автономный режим и контейнерная погрузка.</p></div></div>
   </div>
   <div class="total-box rv">
-    <strong>Итого до коммерческого запуска:</strong>
-    <span class="big">≈ 9–12 месяцев</span>
+    <strong>Итого до ходовых тестов:</strong>
+    <span class="big">10–12 месяцев</span>
   </div>
 </section>
 
@@ -1557,16 +1564,18 @@ footer span{font-size:.78rem;color:#4a5a68}
   <h2 class="s-title">Контакты<br>команды</h2>
   <p class="s-body">Контактные данные разработчика и команды проекта.</p>
   <div class="c-list">
-    <div class="c-row"><div class="c-ico">👤</div><div class="c-info"><small>Разработчик</small><span>Туманов Иван Сергеевич</span></div></div>
-    <div class="c-row"><div class="c-ico">🏢</div><div class="c-info"><small>Команда</small><a href="https://westseal.ru" target="_blank" rel="noreferrer">WestSeal · westseal.ru</a></div></div>
-    <div class="c-row"><div class="c-ico">📧</div><div class="c-info"><small>Email</small><a href="mailto:westseal@mail.ru">westseal@mail.ru</a></div></div>
-    <div class="c-row"><div class="c-ico">📱</div><div class="c-info"><small>Телефон</small><a href="tel:+79626849611">+7 962 684-96-11</a></div></div>
+    <div class="c-row"><div class="c-ico">👤</div><div class="c-info"><small>Контактное лицо</small><span>Нейра Филипп Георгиевич, Учредитель</span></div></div>
+    <div class="c-row"><div class="c-ico">🏢</div><div class="c-info"><small>Компания</small><a href="https://labcluster.ru" target="_blank" rel="noreferrer">ГК «Лабораторный кластер» · labcluster.ru</a></div></div>
+    <div class="c-row"><div class="c-ico">📍</div><div class="c-info"><small>Адрес</small><span>195112, г. Санкт-Петербург, Заневский пр., д. 54, к.5</span></div></div>
+    <div class="c-row"><div class="c-ico">📧</div><div class="c-info"><small>Email</small><a href="mailto:neira@labcluster.ru">neira@labcluster.ru</a></div></div>
+    <div class="c-row"><div class="c-ico">📱</div><div class="c-info"><small>Мобильный</small><a href="tel:+79112999586">+7 911 299-95-86</a></div></div>
+    <div class="c-row"><div class="c-ico">☎️</div><div class="c-info"><small>Офис</small><a href="tel:+78123630808">+7 (812) 363-08-08</a></div></div>
   </div>
 </div>
 
 <footer>
   <div class="f-logo">ASV-11</div>
-  <span>© 2026 Туманов Иван Сергеевич · Команда WestSeal · westseal.ru</span>
+  <span>© 2026 ГК «Лабораторный кластер» · labcluster.ru</span>
   <span>Презентационные материалы</span>
 </footer>
 
