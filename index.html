@@ -109,7 +109,6 @@ html{scroll-behavior:smooth}
 body{
   font-family:var(--ff);color:var(--dark);background:var(--bg);line-height:1.6;overflow-x:hidden;
   color-scheme:light dark;
-  -webkit-user-select:none;user-select:none;-webkit-touch-callout:none;
 }
 img{max-width:100%}
 /* ── Idle propeller cursor ── */
@@ -2034,23 +2033,6 @@ window.addEventListener('scroll', () => {
   obs.observe(reel);
 })();
 
-document.addEventListener('contextmenu', e => e.preventDefault());
-document.addEventListener('copy', e => e.preventDefault());
-document.addEventListener('cut', e => e.preventDefault());
-document.addEventListener('dragstart', e => e.preventDefault());
-document.addEventListener('selectstart', e => e.preventDefault());
-document.addEventListener('keydown', e => {
-  const key = e.key.toLowerCase();
-  if (
-    (e.ctrlKey || e.metaKey) &&
-    ['c', 'x', 's', 'u', 'p', 'a'].includes(key)
-  ) {
-    e.preventDefault();
-  }
-  if (key === 'printscreen' || key === 'f12') {
-    e.preventDefault();
-  }
-});
 
 /* ── Idle propeller cursor (10s no movement) ── */
 (function(){
