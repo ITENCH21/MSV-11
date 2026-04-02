@@ -207,8 +207,9 @@ section{padding:96px 8%}
 
 .problem-bg{background:var(--grad-prob)}
 .p2-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start}
-#concept .p2-grid{align-items:center}
-#concept .p2-grid>div:last-child{align-self:center}
+#concept .p2-grid{align-items:stretch}
+#concept .p2-grid>div:last-child{display:flex;flex-direction:column;margin-top:-30px;margin-bottom:-30px}
+#concept .sol-box{flex:1}
 .pp-list{display:flex;flex-direction:column;gap:18px}
 .pp-item{
   display:flex;gap:16px;align-items:flex-start;
@@ -1038,7 +1039,6 @@ footer span{font-size:.78rem;color:#4a5a68}
   <h2 class="s-title">Отбор проб с судна требует<br><span>присутствия людей на борту</span></h2>
   <div class="p2-grid">
     <div>
-      <h3 style="font-size:1.25rem;font-weight:800;color:var(--dark);margin-bottom:18px">Задачи</h3>
       <div class="pp-list">
         <div class="pp-item rv">
           <div class="pp-icon">🔬</div>
