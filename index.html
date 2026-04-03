@@ -132,8 +132,19 @@ h2,h3,p,span,a,.s-label,.section,.video-reel{
 video,img,canvas,.hero,.hero-bg,.hero-overlay{transition:none !important}
 /* Theme toggle */
 .theme-toggle{
-  background:none;border:none;cursor:pointer;padding:6px;margin-left:12px;
-  display:flex;align-items:center;font-size:1.2rem;position:relative;
+  width:40px;height:40px;border-radius:12px;border:none;cursor:pointer;
+  margin-left:12px;display:flex;align-items:center;justify-content:center;
+  position:relative;flex-shrink:0;
+  background:linear-gradient(145deg,#141f2b,#222f3e);
+  box-shadow:4px 4px 10px rgba(0,0,0,.5),-4px -4px 10px rgba(255,255,255,.07);
+  color:#88bbdd;transition:box-shadow .2s,color .2s;
+}
+.theme-toggle:hover{
+  box-shadow:5px 5px 12px rgba(0,0,0,.55),-5px -5px 12px rgba(255,255,255,.09);
+  color:#ccd6e0;
+}
+.theme-toggle:active{
+  box-shadow:inset 3px 3px 8px rgba(0,0,0,.5),inset -3px -3px 8px rgba(255,255,255,.07);
 }
 .theme-ico{transition:opacity .3s,transform .3s}
 .dark-ico{position:absolute;opacity:0;transform:rotate(-90deg)}
