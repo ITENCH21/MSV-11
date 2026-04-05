@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MSV-11 — многофункциональная морская платформа</title>
-<meta name="description" content="Презентация проекта MSV-11: конструкция, перевозка, технические характеристики, применение и дорожная карта.">
+<title>MSV-11 — многосистемная морская платформа с DP1</title>
+<meta name="description" content="Многосистемная морская платформа с DP1. Алюминиевый корпус, неограниченный район плавания. Документы РМРС. Доставка в любую точку мира в 3 контейнерах 40 фут.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://itench21.github.io/MSV-11/">
-<meta property="og:title" content="MSV-11 — многофункциональная морская платформа">
-<meta property="og:description" content="Презентация проекта MSV-11: конструкция, перевозка, технические характеристики, применение и дорожная карта.">
+<meta property="og:title" content="MSV-11 — многосистемная морская платформа с DP1">
+<meta property="og:description" content="Многосистемная морская платформа с DP1. Алюминиевый корпус, неограниченный район плавания. Документы РМРС. Доставка в любую точку мира в 3 контейнерах 40 фут.">
 <meta property="og:image" content="https://itench21.github.io/MSV-11/assets/images/og-preview-v2.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="MSV-11 — многофункциональная морская платформа">
-<meta name="twitter:description" content="Презентация проекта MSV-11: конструкция, перевозка, технические характеристики, применение и дорожная карта.">
+<meta name="twitter:title" content="MSV-11 — многосистемная морская платформа с DP1">
+<meta name="twitter:description" content="Многосистемная морская платформа с DP1. Алюминиевый корпус, неограниченный район плавания. Документы РМРС. Доставка в любую точку мира в 3 контейнерах 40 фут.">
 <meta name="twitter:image" content="https://itench21.github.io/MSV-11/assets/images/og-preview-v2.jpg">
 <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
 <style>
@@ -281,6 +281,10 @@ section{padding:96px 8%}
 }
 .sol-li:last-child{border:none}
 .sol-li::before{content:'✓';color:var(--orange);font-weight:800;flex-shrink:0}
+
+/* Concept section: pair wrapper (transparent on desktop, flex column on mobile) */
+.pp-pair{display:contents}
+.pp-arrow{display:none}
 
 .show-wrap{background:#e8ecf1;position:relative}
 .vessel-grid{display:grid;grid-template-columns:1.15fr 0.85fr;gap:clamp(24px,3vw,48px);align-items:stretch}
@@ -843,7 +847,7 @@ footer span{font-size:.78rem;color:#4a5a68}
   .gallery-grid img{height:240px}
   .gallery-grid figure:only-child{max-width:100%}
   nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 5%;height:60px}
-  .nav-toggle{display:block}
+  .nav-toggle{display:block;margin-left:auto}
   .nav-links{
     display:none;position:absolute;top:60px;left:0;right:0;
     background:rgba(27,42,56,.98);backdrop-filter:blur(12px);
@@ -851,6 +855,20 @@ footer span{font-size:.78rem;color:#4a5a68}
     border-bottom:1px solid rgba(255,255,255,.08);z-index:999;
   }
   .nav-links.open{display:flex}
+  /* Concept: stack pairs vertically with visible arrow between problem and solution */
+  #concept .concept-heads{display:none}
+  #concept .concept-grid{display:flex;flex-direction:column;gap:0}
+  .pp-pair{display:flex;flex-direction:column;margin-bottom:24px}
+  .pp-pair:last-child{margin-bottom:0}
+  .pp-arrow{
+    display:flex;align-items:center;gap:8px;padding:8px 16px;
+    color:var(--orange);font-size:.8rem;font-weight:700;letter-spacing:.02em;
+  }
+  .pp-arrow svg{flex-shrink:0}
+  #concept .concept-grid .sol-li{
+    border-radius:12px!important;border-top:none!important;
+    margin:0;padding:16px 20px;
+  }
   .numbers{grid-template-columns:repeat(3,1fr)}
   .show-img{max-height:460px}
   .transport-grid img{height:260px}
@@ -1406,38 +1424,55 @@ nav{
     <h3 style="font-size:1.25rem;font-weight:800;color:var(--orange)">Решение — MSV-11</h3>
   </div>
   <div class="concept-grid">
-    <div class="pp-item rv">
-      <div class="pp-icon"><div class="neu-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h6v6H9z"/><path d="M12 10v4"/><path d="M8 18a4 4 0 0 1 8 0"/><path d="M6 22h12"/><path d="M5 4h2"/><path d="M17 4h2"/></svg></div></div>
-      <div class="pp-body">
-        <h4>Сложный пробоотбор</h4>
-        <p>Существующие методики и оборудование по пробоотбору воды, грунта, планктона и других объектов окружающей среды требуют присутствия обученного персонала. Используемое при отборе оборудование рассчитано на отбор только в одной точке.</p>
+
+    <div class="pp-pair">
+      <div class="pp-item rv">
+        <div class="pp-icon"><div class="neu-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h6v6H9z"/><path d="M12 10v4"/><path d="M8 18a4 4 0 0 1 8 0"/><path d="M6 22h12"/><path d="M5 4h2"/><path d="M17 4h2"/></svg></div></div>
+        <div class="pp-body">
+          <h4>Сложный пробоотбор</h4>
+          <p>Существующие методики и оборудование по пробоотбору воды, грунта, планктона и других объектов окружающей среды требуют присутствия обученного персонала. Используемое при отборе оборудование рассчитано на отбор только в одной точке.</p>
+        </div>
       </div>
+      <div class="pp-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg><span>Решение MSV-11</span></div>
+      <div class="sol-li">Катамаран оборудован рубкой на три человека для размещения персонала для отбора проб по программе ПЭК, а также для ведения параллельного отбора с помощью автоматических пробоотборников для разработки и опробования методик и оборудования по автоматическому отбору.</div>
     </div>
-    <div class="sol-li">Катамаран оборудован рубкой на три человека для размещения персонала для отбора проб по программе ПЭК, а также для ведения параллельного отбора с помощью автоматических пробоотборников для разработки и опробования методик и оборудования по автоматическому отбору.</div>
-    <div class="pp-item rv">
-      <div class="pp-icon"><div class="neu-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div></div>
-      <div class="pp-body">
-        <h4>Точное позиционирование DP1</h4>
-        <p>Удержание в точке с погрешностью 1–1,5 метра при силе ветра 4–5 баллов по шкале Бофорта обеспечивается двумя подвесными двигателями по 300 л/с и двумя подруливающими устройствами.</p>
+
+    <div class="pp-pair">
+      <div class="pp-item rv">
+        <div class="pp-icon"><div class="neu-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div></div>
+        <div class="pp-body">
+          <h4>Точное позиционирование DP1</h4>
+          <p>Удержание в точке с погрешностью 1–1,5 метра при силе ветра 4–5 баллов по шкале Бофорта обеспечивается двумя подвесными двигателями по 300 л/с и двумя подруливающими устройствами.</p>
+        </div>
       </div>
+      <div class="pp-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg><span>Решение MSV-11</span></div>
+      <div class="sol-li">Система DP не ниже DP1 позволит катамарану работать в зоне 500 м от добывающей платформы, обеспечивать работу ТНПА на глубинах до 350 м, а также ходить галсами с погружным буксируемым оборудованием при силе ветра до 5 баллов по шкале Бофорта.</div>
     </div>
-    <div class="sol-li">Система DP не ниже DP1 позволит катамарану работать в зоне 500 м от добывающей платформы, обеспечивать работу ТНПА на глубинах до 350 м, а также ходить галсами с погружным буксируемым оборудованием при силе ветра до 5 баллов по шкале Бофорта.</div>
-    <div class="pp-item rv">
-      <div class="pp-icon"><div class="neu-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20a2.4 2.4 0 0 0 2 1 2.4 2.4 0 0 0 2-1 2.4 2.4 0 0 1 4 0 2.4 2.4 0 0 0 2 1 2.4 2.4 0 0 0 2-1 2.4 2.4 0 0 1 4 0"/><path d="M4 18c0-1 1.5-2 2-3h8c.5 1 2 2 2 3"/><path d="M8 15V9h8v6"/><path d="M12 9V4"/><path d="M10 4h4"/></svg></div></div>
-      <div class="pp-body">
-        <h4>Работа с материнским судном</h4>
-        <p>Катамаран буксируется в район работ материнским судном. Материнское судно с соответствующим району работ удалением от берега, судовой лабораторией и возможностью размещения экипажа катамарана.</p>
+
+    <div class="pp-pair">
+      <div class="pp-item rv">
+        <div class="pp-icon"><div class="neu-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20a2.4 2.4 0 0 0 2 1 2.4 2.4 0 0 0 2-1 2.4 2.4 0 0 1 4 0 2.4 2.4 0 0 0 2 1 2.4 2.4 0 0 0 2-1 2.4 2.4 0 0 1 4 0"/><path d="M4 18c0-1 1.5-2 2-3h8c.5 1 2 2 2 3"/><path d="M8 15V9h8v6"/><path d="M12 9V4"/><path d="M10 4h4"/></svg></div></div>
+        <div class="pp-body">
+          <h4>Работа с материнским судном</h4>
+          <p>Катамаран буксируется в район работ материнским судном. Материнское судно с соответствующим району работ удалением от берега, судовой лабораторией и возможностью размещения экипажа катамарана.</p>
+        </div>
       </div>
+      <div class="pp-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg><span>Решение MSV-11</span></div>
+      <div class="sol-li">Для доставки катамарана в район работ мы разработаем проект буксировки, отвечающий требованиям регистра для любого типа материнского судна. Отобранные пробы обрабатываются, консервируются либо замораживаются в судовой лаборатории материнского судна.</div>
     </div>
-    <div class="sol-li">Для доставки катамарана в район работ мы разработаем проект буксировки, отвечающий требованиям регистра для любого типа материнского судна. Отобранные пробы обрабатываются, консервируются либо замораживаются в судовой лаборатории материнского судна.</div>
-    <div class="pp-item rv">
-      <div class="pp-icon"><div class="neu-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div></div>
-      <div class="pp-body">
-        <h4>Безопасность экипажа</h4>
-        <p>Катамаран отвечает всем правилам РМРС.</p>
+
+    <div class="pp-pair">
+      <div class="pp-item rv">
+        <div class="pp-icon"><div class="neu-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div></div>
+        <div class="pp-body">
+          <h4>Безопасность экипажа</h4>
+          <p>Катамаран отвечает всем правилам РМРС.</p>
+        </div>
       </div>
+      <div class="pp-arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg><span>Решение MSV-11</span></div>
+      <div class="sol-li">Катамаран с экипажем отвечают требованиям производственной безопасности «ГПН» при проведении инженерных работ на судах.</div>
     </div>
-    <div class="sol-li">Катамаран с экипажем отвечают требованиям производственной безопасности «ГПН» при проведении инженерных работ на судах.</div>
+
   </div>
 </section>
 
@@ -2038,10 +2073,25 @@ function sw(el, id) {}
 
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
-navToggle?.addEventListener('click', () => navLinks.classList.toggle('open'));
-document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', () => navLinks.classList.remove('open'));
-});
+if (navToggle && navLinks) {
+  navToggle.addEventListener('click', function() {
+    const isOpen = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  navLinks.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+  // Close on outside tap
+  document.addEventListener('click', function(e) {
+    if (!navToggle.contains(e.target) && !navLinks.contains(e.target)) {
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
 
 const ro = new IntersectionObserver(entries => {
   entries.forEach(e => {
