@@ -1061,8 +1061,39 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   -webkit-overflow-scrolling:touch;
 }
 
-/* ── gneft-table: already has overflow-x:auto wrapper — add iOS scroll & touch ── */
-.gneft-table-wrap{touch-action:pan-x pan-y}
+/* ── gneft-table: карточки на мобильном (без горизонтального скролла) ── */
+@media(max-width:720px){
+  .gneft-table-wrap{overflow:visible;border:none;box-shadow:none;border-radius:0}
+  .gneft-table{min-width:0;width:100%}
+  .gneft-table thead{display:none}
+  .gneft-table,.gneft-table tbody,.gneft-table tr,.gneft-table td{display:block;width:100%}
+  .gneft-table tbody tr{
+    margin-bottom:12px;
+    border:1px solid var(--border);border-radius:12px;
+    padding:14px 16px;background:var(--card);
+    box-shadow:var(--card-sh);
+  }
+  .gneft-table tbody tr:last-child{margin-bottom:0}
+  .gneft-table td{padding:3px 0;border-bottom:none;font-size:.83rem}
+  .gneft-table td:first-child{
+    font-size:.9rem;font-weight:700;color:var(--dark);
+    padding-bottom:8px;margin-bottom:4px;
+    border-bottom:1px solid var(--border)!important;
+  }
+  .gneft-table td:nth-child(2){margin-top:8px}
+  .gneft-table td:nth-child(2)::before{
+    content:'Оборудование';display:block;
+    font-size:.61rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--orange);margin-bottom:5px;
+  }
+  .gneft-table td:nth-child(3){margin-top:8px}
+  .gneft-table td:nth-child(3)::before{
+    content:'Ключевые возможности';display:block;
+    font-size:.61rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    color:#88BBDD;margin-bottom:4px;
+  }
+  .gneft-table tbody tr:hover td{background:transparent}
+}
 
 /* ── iOS notch / home-bar safe areas (iPhone X+, all modern iPhones) ── */
 nav{
