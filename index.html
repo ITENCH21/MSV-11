@@ -136,18 +136,12 @@ video,img,canvas,.hero,.hero-bg,.hero-overlay{transition:none !important}
   margin-left:12px;display:flex;align-items:center;justify-content:center;
   position:relative;flex-shrink:0;
   background:linear-gradient(145deg,#ff8040,#d94200);
-  box-shadow:
-    4px 4px 10px rgba(160,40,0,.55),
-    -3px -3px 8px rgba(255,160,80,.35),
-    0 1px 0 rgba(255,200,140,.25) inset;
+  box-shadow:0 1px 0 rgba(255,200,140,.25) inset;
   color:#fff;
-  transition:box-shadow .2s,transform .15s;
+  transition:filter .2s,transform .15s;
 }
 .theme-toggle:hover{
-  box-shadow:
-    5px 5px 13px rgba(160,40,0,.65),
-    -4px -4px 10px rgba(255,160,80,.45),
-    0 1px 0 rgba(255,200,140,.3) inset;
+  filter:brightness(1.1);
   transform:translateY(-1px);
 }
 .theme-toggle:active{
