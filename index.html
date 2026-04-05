@@ -1051,6 +1051,8 @@ nav{
 @media(max-width:860px){
   .vessel-specs-wrap{min-height:0}
   .vessel-specs-panel{position:relative;inset:auto;overflow-y:visible;max-height:none;margin-top:24px}
+  /* Fix: prevent grid item from expanding to min-content width in logistics section */
+  .cont-img{min-width:0;overflow:hidden}
 }
 
 /* ── Video reel mobile: show dots and mute button, scale down play icon ── */
@@ -1066,6 +1068,9 @@ nav{
   }
   .video-play-btn svg{width:60px;height:60px}
   .video-reel-wrap{padding:0 4%}
+  /* Logistics thumbnails: allow horizontal scroll, prevent overflow */
+  .cont-img .showcase-thumbs{overflow-x:auto;-webkit-overflow-scrolling:touch;flex-wrap:nowrap}
+  .cont-img .showcase-thumb{flex:0 0 auto}
 }
 
 /* ── Showcase thumbs: horizontal scroll on very small screens ── */
